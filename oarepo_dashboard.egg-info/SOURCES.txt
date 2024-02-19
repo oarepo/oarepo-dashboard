@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+setup.cfg
+oarepo_dashboard.egg-info/PKG-INFO
+oarepo_dashboard.egg-info/SOURCES.txt
+oarepo_dashboard.egg-info/dependency_links.txt
+oarepo_dashboard.egg-info/entry_points.txt
+oarepo_dashboard.egg-info/requires.txt
+oarepo_dashboard.egg-info/top_level.txt

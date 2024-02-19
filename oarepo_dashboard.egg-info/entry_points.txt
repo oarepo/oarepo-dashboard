@@ -1,0 +1,5 @@
+[invenio_assets.webpack]
+oarepo_vocabularies_ui_theme = oarepo_dashboard.ui.dashboard.webpack:theme
+
+[invenio_base.blueprints]
+oarepo_dashboard = oarepo_dashboard.ui.dashboard:create_blueprint
