@@ -3,7 +3,7 @@ from oarepo_ui.resources.resource import TemplatePageUIResource
 from invenio_search_ui.searchconfig import FacetsConfig, SearchAppConfig, SortConfig
 from invenio_records_resources.proxies import current_service_registry
 from flask_menu import current_menu
-from flask_babelex import lazy_gettext as _
+from oarepo_runtime.i18n import lazy_gettext as _
 
 
 class DashboardPageResourceConfig(TemplatePageUIResourceConfig):
@@ -27,41 +27,41 @@ class DashboardPageResourceConfig(TemplatePageUIResourceConfig):
             sort=SortConfig(
                 {
                     "title": dict(
-                        title=("By Title"),
+                        title=_("By Title"),
                         fields=[
                             "metadata.title"
                         ],  # ES defaults to desc on `_score` field
                     ),
                     "bestmatch": dict(
-                        title=("Best match"),
+                        title=_("Best match"),
                         fields=["_score"],  # ES defaults to desc on `_score` field
                     ),
                     "newest": dict(
-                        title=("Newest"),
+                        title=_("Newest"),
                         fields=["-created"],
                     ),
                     "oldest": dict(
-                        title=("Oldest"),
+                        title=_("Oldest"),
                         fields=["created"],
                     ),
                 },
                 {
                     "title": dict(
-                        title=("By Title"),
+                        title=_("By Title"),
                         fields=[
                             "metadata.title"
                         ],  # ES defaults to desc on `_score` field
                     ),
                     "bestmatch": dict(
-                        title=("Best match"),
+                        title=_("Best match"),
                         fields=["_score"],  # ES defaults to desc on `_score` field
                     ),
                     "newest": dict(
-                        title=("Newest"),
+                        title=_("Newest"),
                         fields=["-created"],
                     ),
                     "oldest": dict(
-                        title=("Oldest"),
+                        title=_("Oldest"),
                         fields=["created"],
                     ),
                 },
@@ -87,41 +87,41 @@ class DashboardPageResourceConfig(TemplatePageUIResourceConfig):
             sort=SortConfig(
                 {
                     "title": dict(
-                        title=("By Title"),
+                        title=_("By Title"),
                         fields=[
                             "metadata.title"
                         ],  # ES defaults to desc on `_score` field
                     ),
                     "bestmatch": dict(
-                        title=("Best match"),
+                        title=_("Best match"),
                         fields=["_score"],  # ES defaults to desc on `_score` field
                     ),
                     "newest": dict(
-                        title=("Newest"),
+                        title=_("Newest"),
                         fields=["-created"],
                     ),
                     "oldest": dict(
-                        title=("Oldest"),
+                        title=_("Oldest"),
                         fields=["created"],
                     ),
                 },
                 {
                     "title": dict(
-                        title=("By Title"),
+                        title=_("By Title"),
                         fields=[
                             "metadata.title"
                         ],  # ES defaults to desc on `_score` field
                     ),
                     "bestmatch": dict(
-                        title=("Best match"),
+                        title=_("Best match"),
                         fields=["_score"],  # ES defaults to desc on `_score` field
                     ),
                     "newest": dict(
-                        title=("Newest"),
+                        title=_("Newest"),
                         fields=["-created"],
                     ),
                     "oldest": dict(
-                        title=("Oldest"),
+                        title=_("Oldest"),
                         fields=["created"],
                     ),
                 },
@@ -158,29 +158,29 @@ class DashboardPageResourceConfig(TemplatePageUIResourceConfig):
             sort=SortConfig(
                 {
                     "bestmatch": dict(
-                        title=("Best match"),
+                        title=_("Best match"),
                         fields=["_score"],  # ES defaults to desc on `_score` field
                     ),
                     "newest": dict(
-                        title=("Newest"),
+                        title=_("Newest"),
                         fields=["-created"],
                     ),
                     "oldest": dict(
-                        title=("Oldest"),
+                        title=_("Oldest"),
                         fields=["created"],
                     ),
                 },
                 {
                     "bestmatch": dict(
-                        title=("Best match"),
+                        title=_("Best match"),
                         fields=["_score"],  # ES defaults to desc on `_score` field
                     ),
                     "newest": dict(
-                        title=("Newest"),
+                        title=_("Newest"),
                         fields=["-created"],
                     ),
                     "oldest": dict(
-                        title=("Oldest"),
+                        title=_("Oldest"),
                         fields=["created"],
                     ),
                 },
@@ -228,21 +228,20 @@ def create_blueprint(app):
         user_dashboard = current_menu.submenu("user_dashboard")
         user_dashboard.submenu("records").register(
             "dashboard.render_DashboardRecordsPage",
-            text="Records",
+            text=_("Records"),
             order=1,
         )
-        
+
         user_dashboard.submenu("communities").register(
             "dashboard.render_DashboardCommunitiesPage",
-            text="Communities",
+            text=_("Communities"),
             order=2,
         )
 
         user_dashboard.submenu("requests").register(
             "dashboard.render_DashboardRequestsPage",
-            text="Requests",
+            text=_("Requests"),
             order=3,
         )
 
     return app_blueprint
-
