@@ -48,7 +48,7 @@ export const ComputerTabletRequestsListItem = ({
       key={result.id}
       className="computer tablet only rel-p-1 rel-mb-1 result-list-item request"
     >
-      <div className="status-icon mr-10">
+      <div className="status-icon mr-10 mt-5">
         <Item.Content verticalAlign="top">
           <Item.Extra>
             <RequestTypeIcon type={result.type} />
@@ -62,9 +62,7 @@ export const ComputerTabletRequestsListItem = ({
             <RequestStatusLabel status={result.status} />
           )}
         </Item.Extra>
-        <Item.Header
-          className={`truncate-lines-2 ${result.is_closed && "mt-5"}`}
-        >
+        <Item.Header className="truncate-lines-2  mt-5">
           <a className="header-link" href={detailsURL}>
             {result.title}
           </a>
