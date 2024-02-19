@@ -1,5 +1,11 @@
 *.egg-info/
 
+# Byte-compiled / optimized / DLL files
+__pypackages__
+__pycache__/
+
+
+
 # node modules
 **/*/node_modules
 yarn.lock
