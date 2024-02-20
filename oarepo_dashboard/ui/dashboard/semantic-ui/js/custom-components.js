@@ -1,1 +1,1 @@
-import "@less/components/custom-components.less";
+import "@less/oarepo_dashboard/components/custom-components.less";
