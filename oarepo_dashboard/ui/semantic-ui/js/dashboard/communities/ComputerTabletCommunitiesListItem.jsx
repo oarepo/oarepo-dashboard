@@ -4,7 +4,7 @@
 // Invenio App RDM is free software; you can redistribute it and/or modify it
 // under the terms of the MIT License; see LICENSE file for more details.
 
-import { i18next } from "@translations/invenio_app_rdm/i18next";
+import { i18next } from "@translations/oarepo_dashboard";
 import React from "react";
 import { Image } from "react-invenio-forms";
 import { Grid, Icon, Header } from "semantic-ui-react";

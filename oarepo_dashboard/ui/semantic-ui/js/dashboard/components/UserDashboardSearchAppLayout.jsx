@@ -8,7 +8,7 @@
 // under the terms of the MIT License; see LICENSE file for more details.
 
 import { SearchAppResultsPane } from "@js/invenio_search_ui/components";
-import { i18next } from "@translations/i18next";
+import { i18next } from "@translations/oarepo_dashboard";
 import React from "react";
 import { SearchBar } from "react-searchkit";
 import { GridResponsiveSidebarColumn } from "react-invenio-forms";

@@ -14,7 +14,9 @@ theme = WebpackThemeBundle(
             },
             "dependencies": {},
             "devDependencies": {},
-            "aliases": {},
+            "aliases": {
+                "@translations/oarepo_dashboard": "translations/oarepo_dashboard/i18next.js"
+            },
         }
     },
 )

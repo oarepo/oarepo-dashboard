@@ -18,7 +18,7 @@ import { ComputerTabledCommunitiesListItem } from "./ComputerTabletCommunitiesLi
 import { MobileCommunitiesListItem } from "./MobileCommunitiesListItem";
 import { UserDashboardSearchAppLayoutHOC } from "../components/UserDashboardSearchAppLayout";
 import { UserDashboardSearchAppResultView } from "../components/UserDashboardSearchAppResultView";
-import { i18next } from "@translations/i18next";
+import { i18next } from "@translations/oarepo_dashboard";
 const appName = "UserDashboard.communities";
 
 export const UserDashboardCommunitiesListItem = ({

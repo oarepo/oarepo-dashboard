@@ -16,7 +16,7 @@ import { defaultContribComponents } from "@js/invenio_requests/contrib";
 import { PropTypes } from "prop-types";
 import { UserDashboardSearchAppLayoutHOC } from "../components/UserDashboardSearchAppLayout";
 import { UserDashboardSearchAppResultView } from "../components/UserDashboardSearchAppResultView";
-import { i18next } from "@translations/i18next";
+import { i18next } from "@translations/oarepo_dashboard";
 import { FacetsButtonGroup } from "./FacetsButtonGroup";
 import { ComputerTabletRequestsListItem } from "./ComputerTabletRequestsListItem";
 import { MobileRequestsListItem } from "./MobileRequestsListItem";

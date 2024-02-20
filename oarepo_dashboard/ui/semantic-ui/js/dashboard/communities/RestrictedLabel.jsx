@@ -1,4 +1,4 @@
-import { i18next } from "@translations/i18next";
+import { i18next } from "@translations/oarepo_dashboard";
 import React from "react";
 import PropTypes from "prop-types";
 

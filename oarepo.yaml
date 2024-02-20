@@ -4,7 +4,7 @@ i18n:
     - oarepo_dashboard
   i18next_output_translations: oarepo_dashboard/ui/semantic-ui/translations/oarepo_dashboard
   i18next_source_paths:
-    - oarepo_dashboard/ui/dashboard/semantic-ui/js
+    - oarepo_dashboard/ui/semantic-ui/js
   languages:
     - cs
     - en

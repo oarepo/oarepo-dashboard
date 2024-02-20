@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
-import { i18next } from "@translations/i18next";
+import { i18next } from "@translations/oarepo_dashboard";
 import { Button } from "semantic-ui-react";
 import { withState } from "react-searchkit";
 import { SearchConfigurationContext } from "@js/invenio_search_ui/components";

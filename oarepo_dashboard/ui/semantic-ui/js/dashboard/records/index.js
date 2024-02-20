@@ -15,7 +15,7 @@ import {
 } from "@js/oarepo_ui/search";
 import { UserDashboardSearchAppLayoutHOC } from "../components/UserDashboardSearchAppLayout";
 import { UserDashboardSearchAppResultView } from "../components/UserDashboardSearchAppResultView";
-import { i18next } from "@translations/i18next";
+import { i18next } from "@translations/oarepo_dashboard";
 import { ComputerTabletRecordsListItem } from "./ComputerTabletRecordsListItem";
 import { MobileRecordsListItem } from "./MobileRecordsListItem";
 const appName = "UserDashboard.records";

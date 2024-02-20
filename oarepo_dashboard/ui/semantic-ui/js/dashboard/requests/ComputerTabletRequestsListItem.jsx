@@ -4,9 +4,8 @@
 // Invenio App RDM is free software; you can redistribute it and/or modify it
 // under the terms of the MIT License; see LICENSE file for more details.
 
-import { i18next } from "@translations/i18next";
+import { i18next } from "@translations/oarepo_dashboard";
 import { default as RequestTypeIcon } from "@js/invenio_requests/components/RequestTypeIcon";
-import { Trans } from "react-i18next";
 import React from "react";
 import RequestTypeLabel from "@js/invenio_requests/request/RequestTypeLabel";
 import RequestStatusLabel from "@js/invenio_requests/request/RequestStatusLabel";
@@ -42,7 +41,10 @@ export const ComputerTabletRequestsListItem = ({
   const getUserIcon = (receiver) => {
     return receiver?.is_ghost ? "user secret" : "users";
   };
-
+  const relativeTime = toRelativeTime(
+    createdDate.toISOString(),
+    i18next.language
+  );
   return (
     <Item
       key={result.id}
@@ -69,15 +71,7 @@ export const ComputerTabletRequestsListItem = ({
         </Item.Header>
         <Item.Meta>
           <small>
-            <Trans
-              defaults="Opened {{relativeTime}} by"
-              values={{
-                relativeTime: toRelativeTime(
-                  createdDate.toISOString(),
-                  i18next.language
-                ),
-              }}
-            />{" "}
+            {i18next.t("Opened by", { relativeTime: relativeTime })}{" "}
             {creatorName}
           </small>
           <small className="right floated">
