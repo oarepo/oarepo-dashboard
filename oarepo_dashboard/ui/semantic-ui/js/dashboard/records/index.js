@@ -18,6 +18,8 @@ import { UserDashboardSearchAppResultView } from "../components/UserDashboardSea
 import { i18next } from "@translations/oarepo_dashboard";
 import { ComputerTabletRecordsListItem } from "./ComputerTabletRecordsListItem";
 import { MobileRecordsListItem } from "./MobileRecordsListItem";
+import PropTypes from "prop-types";
+
 const appName = "UserDashboard.records";
 
 const schemesList = [
@@ -59,6 +61,10 @@ export const UserDashboardRecordsListItem = ({ result }) => {
       <MobileRecordsListItem result={result} uiMetadata={uiMetadata} />
     </React.Fragment>
   );
+};
+
+UserDashboardRecordsListItem.propTypes = {
+  result: PropTypes.object.isRequired,
 };
 
 const UserDashboardSearchAppResultViewWAppName = parametrize(

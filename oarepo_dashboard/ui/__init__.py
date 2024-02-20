@@ -5,6 +5,25 @@ from invenio_records_resources.proxies import current_service_registry
 from flask_menu import current_menu
 from oarepo_runtime.i18n import lazy_gettext as _
 
+sort_options = {
+    "title": dict(
+        title=_("By Title"),
+        fields=["metadata.title"],  # ES defaults to desc on `_score` field
+    ),
+    "bestmatch": dict(
+        title=_("Best match"),
+        fields=["_score"],  # ES defaults to desc on `_score` field
+    ),
+    "newest": dict(
+        title=_("Newest"),
+        fields=["-created"],
+    ),
+    "oldest": dict(
+        title=_("Oldest"),
+        fields=["created"],
+    ),
+}
+
 
 class DashboardPageResourceConfig(TemplatePageUIResourceConfig):
     url_prefix = "/me/"
@@ -25,46 +44,8 @@ class DashboardPageResourceConfig(TemplatePageUIResourceConfig):
             headers={"Accept": "application/vnd.inveniordm.v1+json"},
             grid_view=False,
             sort=SortConfig(
-                {
-                    "title": dict(
-                        title=_("By Title"),
-                        fields=[
-                            "metadata.title"
-                        ],  # ES defaults to desc on `_score` field
-                    ),
-                    "bestmatch": dict(
-                        title=_("Best match"),
-                        fields=["_score"],  # ES defaults to desc on `_score` field
-                    ),
-                    "newest": dict(
-                        title=_("Newest"),
-                        fields=["-created"],
-                    ),
-                    "oldest": dict(
-                        title=_("Oldest"),
-                        fields=["created"],
-                    ),
-                },
-                {
-                    "title": dict(
-                        title=_("By Title"),
-                        fields=[
-                            "metadata.title"
-                        ],  # ES defaults to desc on `_score` field
-                    ),
-                    "bestmatch": dict(
-                        title=_("Best match"),
-                        fields=["_score"],  # ES defaults to desc on `_score` field
-                    ),
-                    "newest": dict(
-                        title=_("Newest"),
-                        fields=["-created"],
-                    ),
-                    "oldest": dict(
-                        title=_("Oldest"),
-                        fields=["created"],
-                    ),
-                },
+                sort_options,
+                sort_options,
                 "newest",
                 "newest",
             ),
@@ -82,49 +63,12 @@ class DashboardPageResourceConfig(TemplatePageUIResourceConfig):
             app_id="UserDashboard.requests",
             endpoint="/api/requests",
             headers={"Accept": "application/json"},
+            # TODO: just for testing of button group in requests search app
             # initial_filters=[["status", "created"], ["type", "publish_draft"]],
             initial_filters=[["is_open", "true"], ["is_mine", "true"]],
             sort=SortConfig(
-                {
-                    "title": dict(
-                        title=_("By Title"),
-                        fields=[
-                            "metadata.title"
-                        ],  # ES defaults to desc on `_score` field
-                    ),
-                    "bestmatch": dict(
-                        title=_("Best match"),
-                        fields=["_score"],  # ES defaults to desc on `_score` field
-                    ),
-                    "newest": dict(
-                        title=_("Newest"),
-                        fields=["-created"],
-                    ),
-                    "oldest": dict(
-                        title=_("Oldest"),
-                        fields=["created"],
-                    ),
-                },
-                {
-                    "title": dict(
-                        title=_("By Title"),
-                        fields=[
-                            "metadata.title"
-                        ],  # ES defaults to desc on `_score` field
-                    ),
-                    "bestmatch": dict(
-                        title=_("Best match"),
-                        fields=["_score"],  # ES defaults to desc on `_score` field
-                    ),
-                    "newest": dict(
-                        title=_("Newest"),
-                        fields=["-created"],
-                    ),
-                    "oldest": dict(
-                        title=_("Oldest"),
-                        fields=["created"],
-                    ),
-                },
+                sort_options,
+                sort_options,
                 "newest",
                 "newest",
             ),
@@ -156,34 +100,8 @@ class DashboardPageResourceConfig(TemplatePageUIResourceConfig):
             headers={"Accept": "application/vnd.inveniordm.v1+json"},
             grid_view=False,
             sort=SortConfig(
-                {
-                    "bestmatch": dict(
-                        title=_("Best match"),
-                        fields=["_score"],  # ES defaults to desc on `_score` field
-                    ),
-                    "newest": dict(
-                        title=_("Newest"),
-                        fields=["-created"],
-                    ),
-                    "oldest": dict(
-                        title=_("Oldest"),
-                        fields=["created"],
-                    ),
-                },
-                {
-                    "bestmatch": dict(
-                        title=_("Best match"),
-                        fields=["_score"],  # ES defaults to desc on `_score` field
-                    ),
-                    "newest": dict(
-                        title=_("Newest"),
-                        fields=["-created"],
-                    ),
-                    "oldest": dict(
-                        title=_("Oldest"),
-                        fields=["created"],
-                    ),
-                },
+                sort_options,
+                sort_options,
                 "newest",
                 "newest",
             ),
@@ -196,6 +114,7 @@ class DashboardPageResourceConfig(TemplatePageUIResourceConfig):
 class DashboardPageResource(TemplatePageUIResource):
     def render_DashboardRecordsPage(self, **kwargs):
         search_app_config = self.config.records_search_app_config(
+            # TODO: patch for search app config issue in invenio https://github.com/inveniosoftware/invenio-search-ui/issues/196
             overrides={"defaultSortingOnEmptyQueryString": {"sortBy": "newest"}}
         )
         return self.render(
