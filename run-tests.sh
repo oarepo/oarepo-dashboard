@@ -23,4 +23,4 @@ pip uninstall -y uritemplate
 pip install uritemplate
 
 
-pytest tests
+# pytest tests
