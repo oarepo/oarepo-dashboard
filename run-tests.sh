@@ -22,6 +22,5 @@ pip install -e ".[tests]"
 pip uninstall -y uritemplate
 pip install uritemplate
 
-# invenio index destroy --force --yes-i-know || true
 
-# pytest tests
+pytest tests
