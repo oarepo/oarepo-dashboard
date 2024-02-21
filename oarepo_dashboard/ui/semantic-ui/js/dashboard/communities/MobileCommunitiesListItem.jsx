@@ -42,7 +42,10 @@ export const MobileCommunitiesListItem = ({
             </div>
             <div>
               <Header as="h4">
-                <a className="truncate-lines-2" href={result?.links?.members}>
+                <a
+                  className="truncate-lines-2"
+                  href={result?.links?.members.replace("/api", "")}
+                >
                   {result.metadata.title}
                 </a>
               </Header>

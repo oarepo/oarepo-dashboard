@@ -37,8 +37,12 @@ export const ComputerTabledCommunitiesListItem = ({
                 <RestrictedLabel access={result.access.visibility} />
               </div>
             )}
+            {/* TODO: Need to get ui link for members in a better way */}
             <Header as="h4">
-              <a className="truncate-lines-2" href={result?.links?.members}>
+              <a
+                className="truncate-lines-2"
+                href={result?.links?.members.replace("/api", "")}
+              >
                 {result.metadata.title}
               </a>
             </Header>

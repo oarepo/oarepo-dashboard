@@ -47,11 +47,6 @@ RequestsResultsItemTemplateDashboard.propTypes = {
 export const FacetButtons = () => (
   <React.Fragment>
     <Grid.Column only="computer" textAlign="right">
-      <Button size="mini" primary className="rel-mr-2">
-        <Icon name="plus" />
-
-        {i18next.t("New request")}
-      </Button>
       <FacetsButtonGroup facetName="is_open" />
       <span className="rel-ml-2"></span>
       <FacetsButtonGroup
@@ -59,12 +54,6 @@ export const FacetButtons = () => (
         trueButtonText={i18next.t("My")}
         falseButtonText={i18next.t("Others")}
       />
-    </Grid.Column>
-    <Grid.Column only="tablet" textAlign="left">
-      <Button size="mini" primary>
-        <Icon name="plus" />
-        {i18next.t("New request")}
-      </Button>
     </Grid.Column>
     <Grid.Column only="mobile tablet" textAlign="left">
       <FacetsButtonGroup facetName="is_open" />
@@ -90,14 +79,6 @@ export const DashboardUploadsSearchLayout = UserDashboardSearchAppLayoutHOC({
   placeholder: i18next.t("Search in my requests..."),
   extraContent: FacetButtons,
   appName: appName,
-  extraRow: (
-    <Grid.Column>
-      <Button fluid size="mini" primary>
-        <Icon name="plus" />
-        {i18next.t("New request")}
-      </Button>
-    </Grid.Column>
-  ),
 });
 export const defaultComponents = {
   [`${appName}.ActiveFilters.element`]: ActiveFiltersElement,
