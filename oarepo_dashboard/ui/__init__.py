@@ -162,5 +162,12 @@ def create_blueprint(app):
             text=_("Requests"),
             order=3,
         )
+        # if you add dashboard to your project, the library adds itself to the main menu
+        main_menu_dashboard = current_menu.submenu("main.dashboard")
+        main_menu_dashboard.register(
+            "dashboard.render_DashboardRecordsPage",
+            _("Dashboard"),
+            order=1,
+        )
 
     return app_blueprint
