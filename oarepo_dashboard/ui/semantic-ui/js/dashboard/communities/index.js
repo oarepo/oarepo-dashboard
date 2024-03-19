@@ -1,15 +1,10 @@
 import React from "react";
-import { parametrize, overrideStore } from "react-overridable";
-import { createSearchAppInit } from "@js/invenio_search_ui";
+import { parametrize } from "react-overridable";
 import {
-  ActiveFiltersElement,
-  BucketAggregationElement,
-  BucketAggregationValuesElement,
-  SearchAppResultOptions,
-  SearchAppSort,
+  createSearchAppsInit,
+  parseSearchAppConfigs,
   SearchappSearchbarElement,
-  ErrorElement,
-} from "@js/oarepo_ui/search";
+} from "@js/oarepo_ui";
 // TODO: if we wish to import some things from invenio we need to resolve translations
 // in their system
 import { CommunitiesEmptySearchResults } from "@js/invenio_communities/community";
@@ -19,7 +14,9 @@ import { MobileCommunitiesListItem } from "./MobileCommunitiesListItem";
 import { UserDashboardSearchAppLayoutHOC } from "../components/UserDashboardSearchAppLayout";
 import { UserDashboardSearchAppResultView } from "../components/UserDashboardSearchAppResultView";
 import { i18next } from "@translations/oarepo_dashboard";
-const appName = "UserDashboard.communities";
+
+const [searchAppConfig, ..._] = parseSearchAppConfigs();
+const { overridableIdPrefix } = searchAppConfig;
 
 export const UserDashboardCommunitiesListItem = ({
   result,
@@ -54,37 +51,23 @@ UserDashboardCommunitiesListItem.defaultProps = {
 const UserDashboardSearchAppResultViewWAppName = parametrize(
   UserDashboardSearchAppResultView,
   {
-    appName: appName,
+    appName: overridableIdPrefix,
   }
 );
-
 export const DashboardUploadsSearchLayout = UserDashboardSearchAppLayoutHOC({
   placeholder: i18next.t("Search in my communities..."),
   extraContent: () => null,
-  appName: appName,
+  appName: overridableIdPrefix,
 });
-export const defaultComponents = {
-  [`${appName}.ActiveFilters.element`]: ActiveFiltersElement,
-
-  [`${appName}.BucketAggregation.element`]: BucketAggregationElement,
-  [`${appName}.BucketAggregationValues.element`]:
-    BucketAggregationValuesElement,
-  [`${appName}.SearchApp.resultOptions`]: SearchAppResultOptions,
-  [`${appName}.EmptyResults.element`]: CommunitiesEmptySearchResults,
-  [`${appName}.ResultsList.item`]: UserDashboardCommunitiesListItem,
-  // [`${appName}.SearchApp.facets`]: ContribSearchAppFacetsWithConfig,
-  [`${appName}.SearchApp.results`]: UserDashboardSearchAppResultViewWAppName,
-  [`${appName}.Error.element`]: ErrorElement,
-  [`${appName}.SearchBar.element`]: SearchappSearchbarElement,
-  [`${appName}.SearchApp.layout`]: DashboardUploadsSearchLayout,
-  [`${appName}.SearchApp.sort`]: SearchAppSort,
+export const componentOverrides = {
+  [`${overridableIdPrefix}.EmptyResults.element`]:
+    CommunitiesEmptySearchResults,
+  [`${overridableIdPrefix}.ResultsList.item`]: UserDashboardCommunitiesListItem,
+  // [`${overridableIdPrefix}.SearchApp.facets`]: ContribSearchAppFacetsWithConfig,
+  [`${overridableIdPrefix}.SearchApp.results`]:
+    UserDashboardSearchAppResultViewWAppName,
+  [`${overridableIdPrefix}.SearchBar.element`]: SearchappSearchbarElement,
+  [`${overridableIdPrefix}.SearchApp.layout`]: DashboardUploadsSearchLayout,
 };
 
-const overriddenComponents = overrideStore.getAll();
-
-createSearchAppInit(
-  { ...defaultComponents, ...overriddenComponents },
-  true,
-  "invenio-search-config",
-  true
-);
+createSearchAppsInit({ componentOverrides });
