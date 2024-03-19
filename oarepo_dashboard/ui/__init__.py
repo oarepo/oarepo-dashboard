@@ -70,8 +70,8 @@ class DashboardPageResourceConfig(TemplatePageUIResourceConfig):
             endpoint="/api/requests",
             headers={"Accept": "application/json"},
             # TODO: just for testing of button group in requests search app
-            # initial_filters=[["status", "created"], ["type", "publish_draft"]],
-            initial_filters=[["is_open", "true"], ["is_mine", "true"]],
+            # initial_filters=[["is_open", "true"], ["is_mine", "true"]],
+            initial_filters=[["is_open", "true"]],
             sort=SortConfig(
                 sort_options,
                 sort_options,

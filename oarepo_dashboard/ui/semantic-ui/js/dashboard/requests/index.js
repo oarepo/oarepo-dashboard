@@ -1,15 +1,11 @@
 import React from "react";
-import { Button, Grid, Icon } from "semantic-ui-react";
-import { parametrize, overrideStore } from "react-overridable";
-import { createSearchAppInit } from "@js/invenio_search_ui";
+import { Grid } from "semantic-ui-react";
+import { parametrize } from "react-overridable";
 import {
-  ActiveFiltersElement,
-  BucketAggregationElement,
-  SearchAppResultOptions,
-  SearchAppSort,
+  createSearchAppsInit,
+  parseSearchAppConfigs,
   SearchappSearchbarElement,
-  BucketAggregationValuesElement,
-} from "@js/oarepo_ui/search";
+} from "@js/oarepo_ui";
 import { withState } from "react-searchkit";
 import { RequestsEmptyResultsWithState } from "@js/invenio_requests/search";
 import { defaultContribComponents } from "@js/invenio_requests/contrib";
@@ -21,8 +17,8 @@ import { FacetsButtonGroup } from "./FacetsButtonGroup";
 import { ComputerTabletRequestsListItem } from "./ComputerTabletRequestsListItem";
 import { MobileRequestsListItem } from "./MobileRequestsListItem";
 
-const appName = "UserDashboard.requests";
-
+const [searchAppConfig, ..._] = parseSearchAppConfigs();
+const { overridableIdPrefix } = searchAppConfig;
 export function RequestsResultsItemTemplateDashboard({ result }) {
   const ComputerTabletRequestsItemWithState = withState(
     ComputerTabletRequestsListItem
@@ -43,65 +39,53 @@ export function RequestsResultsItemTemplateDashboard({ result }) {
 RequestsResultsItemTemplateDashboard.propTypes = {
   result: PropTypes.object.isRequired,
 };
-
+// TODO: currently there is no API to determine if request is mine or not
 export const FacetButtons = () => (
   <React.Fragment>
     <Grid.Column only="computer" textAlign="right">
       <FacetsButtonGroup facetName="is_open" />
-      <span className="rel-ml-2"></span>
-      <FacetsButtonGroup
+      {/* <span className="rel-ml-2"></span> */}
+      {/* <FacetsButtonGroup
         facetName="is_mine"
         trueButtonText={i18next.t("My")}
         falseButtonText={i18next.t("Others")}
-      />
+      /> */}
     </Grid.Column>
     <Grid.Column only="mobile tablet" textAlign="left">
       <FacetsButtonGroup facetName="is_open" />
     </Grid.Column>
-    <Grid.Column only="mobile tablet" textAlign="right">
+    {/* <Grid.Column only="mobile tablet" textAlign="right">
       <FacetsButtonGroup
         facetName="is_mine"
         trueButtonText={i18next.t("My")}
         falseButtonText={i18next.t("Others")}
       />
-    </Grid.Column>
+    </Grid.Column> */}
   </React.Fragment>
 );
 
 const UserDashboardSearchAppResultViewWAppName = parametrize(
   UserDashboardSearchAppResultView,
   {
-    appName: appName,
+    appName: overridableIdPrefix,
   }
 );
 
 export const DashboardUploadsSearchLayout = UserDashboardSearchAppLayoutHOC({
   placeholder: i18next.t("Search in my requests..."),
   extraContent: FacetButtons,
-  appName: appName,
+  appName: overridableIdPrefix,
 });
-export const defaultComponents = {
-  [`${appName}.ActiveFilters.element`]: ActiveFiltersElement,
-
-  [`${appName}.BucketAggregation.element`]: BucketAggregationElement,
-  [`${appName}.BucketAggregationValues.element`]:
-    BucketAggregationValuesElement,
-  [`${appName}.SearchApp.resultOptions`]: SearchAppResultOptions,
-  [`${appName}.EmptyResults.element`]: RequestsEmptyResultsWithState,
-  [`${appName}.ResultsList.item`]: RequestsResultsItemTemplateDashboard,
-  // [`${appName}.SearchApp.facets`]: ContribSearchAppFacetsWithConfig,
-  [`${appName}.SearchApp.results`]: UserDashboardSearchAppResultViewWAppName,
-  [`${appName}.SearchBar.element`]: SearchappSearchbarElement,
-  [`${appName}.SearchApp.layout`]: DashboardUploadsSearchLayout,
-  [`${appName}.SearchApp.sort`]: SearchAppSort,
+export const componentOverrides = {
+  [`${overridableIdPrefix}.EmptyResults.element`]:
+    RequestsEmptyResultsWithState,
+  [`${overridableIdPrefix}.ResultsList.item`]:
+    RequestsResultsItemTemplateDashboard,
+  [`${overridableIdPrefix}.SearchApp.results`]:
+    UserDashboardSearchAppResultViewWAppName,
+  [`${overridableIdPrefix}.SearchBar.element`]: SearchappSearchbarElement,
+  [`${overridableIdPrefix}.SearchApp.layout`]: DashboardUploadsSearchLayout,
   ...defaultContribComponents,
 };
 
-const overriddenComponents = overrideStore.getAll();
-
-createSearchAppInit(
-  { ...defaultComponents, ...overriddenComponents },
-  true,
-  "invenio-search-config",
-  true
-);
+createSearchAppsInit({ componentOverrides });
