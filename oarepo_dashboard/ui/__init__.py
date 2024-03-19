@@ -33,13 +33,19 @@ class DashboardPageResourceConfig(TemplatePageUIResourceConfig):
         "records": "DashboardRecordsPage",
         "communities": "DashboardCommunitiesPage",
         "requests": "DashboardRequestsPage",
-        # add a new page here. The key is the URL path, the value is the name of the template
-        # then put <name>.jinja into the templates folder
     }
+    records_app_id = "records_dashboard".capitalize()
+    requests_app_id = "requests_dashboard".capitalize()
+    communities_app_id = "communities_dashboard".capitalize()
 
     def records_search_app_config(self, overrides={}, **kwargs):
+        documents_service = current_service_registry.get("documents")
+        documents_config = documents_service.config
+        search_facets = documents_config.search.facets
+        facets = self.search_facets_config(search_facets, search_facets.keys())
+
         opts = dict(
-            app_id="UserDashboard.records",
+            app_id=self.records_app_id,
             endpoint="/api/docs",
             headers={"Accept": "application/vnd.inveniordm.v1+json"},
             grid_view=False,
@@ -49,7 +55,7 @@ class DashboardPageResourceConfig(TemplatePageUIResourceConfig):
                 "newest",
                 "newest",
             ),
-            facets={},
+            facets=facets,
         )
         opts.update(kwargs)
         return SearchAppConfig.generate(opts, **overrides)
@@ -60,7 +66,7 @@ class DashboardPageResourceConfig(TemplatePageUIResourceConfig):
         search_facets = requests_config.search.facets
         facets = self.search_facets_config(search_facets, search_facets.keys())
         opts = dict(
-            app_id="UserDashboard.requests",
+            app_id=self.requests_app_id,
             endpoint="/api/requests",
             headers={"Accept": "application/json"},
             # TODO: just for testing of button group in requests search app
@@ -95,7 +101,7 @@ class DashboardPageResourceConfig(TemplatePageUIResourceConfig):
         search_facets = community_config.search.facets
         facets = self.search_facets_config(search_facets, search_facets.keys())
         opts = dict(
-            app_id="UserDashboard.communities",
+            app_id=self.communities_app_id,
             endpoint="/api/user/communities",
             headers={"Accept": "application/vnd.inveniordm.v1+json"},
             grid_view=False,
@@ -115,7 +121,11 @@ class DashboardPageResource(TemplatePageUIResource):
     def render_DashboardRecordsPage(self, **kwargs):
         search_app_config = self.config.records_search_app_config(
             # TODO: patch for search app config issue in invenio https://github.com/inveniosoftware/invenio-search-ui/issues/196
-            overrides={"defaultSortingOnEmptyQueryString": {"sortBy": "newest"}}
+            overrides={
+                "defaultSortingOnEmptyQueryString": {"sortBy": "newest"},
+                "overridableIdPrefix": f"{self.config.records_app_id}.Search",
+                "ui_endpoint": "/docs",
+            }
         )
         return self.render(
             "DashboardRecordsPage", search_app_config=search_app_config, **kwargs
@@ -123,7 +133,10 @@ class DashboardPageResource(TemplatePageUIResource):
 
     def render_DashboardCommunitiesPage(self, **kwargs):
         search_app_config = self.config.communities_search_app_config(
-            overrides={"defaultSortingOnEmptyQueryString": {"sortBy": "newest"}}
+            overrides={
+                "defaultSortingOnEmptyQueryString": {"sortBy": "newest"},
+                "overridableIdPrefix": f"{self.config.communities_app_id}.Search",
+            }
         )
         return self.render(
             "DashboardCommunitiesPage", search_app_config=search_app_config, **kwargs
@@ -131,7 +144,10 @@ class DashboardPageResource(TemplatePageUIResource):
 
     def render_DashboardRequestsPage(self, **kwargs):
         search_app_config = self.config.requests_search_app_config(
-            overrides={"defaultSortingOnEmptyQueryString": {"sortBy": "newest"}}
+            overrides={
+                "defaultSortingOnEmptyQueryString": {"sortBy": "newest"},
+                "overridableIdPrefix": f"{self.config.requests_app_id}.Search",
+            }
         )
         return self.render(
             "DashboardRequestsPage", search_app_config=search_app_config, **kwargs
