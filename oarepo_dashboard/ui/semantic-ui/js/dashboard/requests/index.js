@@ -16,6 +16,16 @@ import { i18next } from "@translations/oarepo_dashboard";
 import { FacetsButtonGroup } from "./FacetsButtonGroup";
 import { ComputerTabletRequestsListItem } from "./ComputerTabletRequestsListItem";
 import { MobileRequestsListItem } from "./MobileRequestsListItem";
+import {
+  LabelTypeEditRecord,
+  LabelTypeDeleteRecord,
+  LabelTypePublishRecord,
+} from "./labels/TypeLabels";
+import {
+  PublishRecordIcon,
+  DeleteRecordIcon,
+  EditRecordIcon,
+} from "./icons/TypeIcons";
 
 const [searchAppConfig, ..._] = parseSearchAppConfigs();
 const { overridableIdPrefix } = searchAppConfig;
@@ -86,6 +96,15 @@ export const componentOverrides = {
   [`${overridableIdPrefix}.SearchBar.element`]: SearchappSearchbarElement,
   [`${overridableIdPrefix}.SearchApp.layout`]: DashboardUploadsSearchLayout,
   ...defaultContribComponents,
+  [`RequestTypeLabel.layout.documents_edit_record`]: LabelTypeEditRecord,
+  [`RequestTypeLabel.layout.documents_delete_record`]: LabelTypeDeleteRecord,
+  [`RequestTypeLabel.layout.documents_publish_draft`]: LabelTypePublishRecord,
+  [`InvenioRequests.RequestTypeIcon.layout.documents_edit_record`]:
+    EditRecordIcon,
+  [`InvenioRequests.RequestTypeIcon.layout.documents_delete_record`]:
+    DeleteRecordIcon,
+  [`InvenioRequests.RequestTypeIcon.layout.documents_publish_draft`]:
+    PublishRecordIcon,
 };
 
 createSearchAppsInit({ componentOverrides });

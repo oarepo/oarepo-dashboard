@@ -56,7 +56,6 @@ const UserDashboardSearchAppResultViewWAppName = parametrize(
 );
 export const DashboardUploadsSearchLayout = UserDashboardSearchAppLayoutHOC({
   placeholder: i18next.t("Search in my communities..."),
-  extraContent: () => null,
   appName: overridableIdPrefix,
 });
 export const componentOverrides = {

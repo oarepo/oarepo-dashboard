@@ -10,11 +10,11 @@
 import { SearchAppResultsPane } from "@js/invenio_search_ui/components";
 import { i18next } from "@translations/oarepo_dashboard";
 import React from "react";
-import { SearchBar } from "react-searchkit";
+import { SearchBar, ActiveFilters } from "react-searchkit";
 import { GridResponsiveSidebarColumn } from "react-invenio-forms";
 import { Grid, Button, Container } from "semantic-ui-react";
 import PropTypes from "prop-types";
-import { SearchAppFacets } from "@js/oarepo_ui";
+import { SearchAppFacets, ClearFiltersButton } from "@js/oarepo_ui";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const queryClient = new QueryClient();
@@ -22,7 +22,7 @@ const queryClient = new QueryClient();
 export const UserDashboardSearchAppLayoutHOC = ({
   placeholder,
   extraContent,
-  extraRow,
+  mobileOnlyExtraRow,
   appName,
 }) => {
   const DashboardUploadsSearchLayout = (props) => {
@@ -43,9 +43,15 @@ export const UserDashboardSearchAppLayoutHOC = ({
               <Grid columns="equal">
                 <Grid.Row only="computer" verticalAlign="middle">
                   <Grid.Column>
+                    <ActiveFilters />
+                    <ClearFiltersButton />
+                  </Grid.Column>
+                </Grid.Row>
+                <Grid.Row only="computer" verticalAlign="middle">
+                  <Grid.Column>
                     <SearchBar placeholder={placeholder} className="rel-pl-1" />
                   </Grid.Column>
-                  {extraContent()}
+                  {extraContent && extraContent()}
                 </Grid.Row>
                 <Grid.Column only="mobile tablet" mobile={2} tablet={2}>
                   <Button
@@ -55,7 +61,6 @@ export const UserDashboardSearchAppLayoutHOC = ({
                     aria-label={i18next.t("Filter results")}
                   />
                 </Grid.Column>
-
                 <Grid.Column
                   only="mobile tablet"
                   mobile={14}
@@ -64,14 +69,21 @@ export const UserDashboardSearchAppLayoutHOC = ({
                 >
                   <SearchBar placeholder={placeholder} />
                 </Grid.Column>
-                <Grid.Row only="tablet mobile" verticalAlign="middle">
-                  {extraContent()}
-                </Grid.Row>
-                {extraRow && (
-                  <Grid.Row verticalAlign="middle" only="mobile">
-                    {extraRow}
+                {extraContent && (
+                  <Grid.Row only="tablet mobile" verticalAlign="middle">
+                    {extraContent()}
                   </Grid.Row>
                 )}
+                {mobileOnlyExtraRow && (
+                  <Grid.Row verticalAlign="middle" only="mobile">
+                    {mobileOnlyExtraRow()}
+                  </Grid.Row>
+                )}
+                <Grid.Row only="mobile tablet">
+                  <Grid.Column>
+                    <ClearFiltersButton />
+                  </Grid.Column>
+                </Grid.Row>
                 <Grid.Row>
                   <Grid.Column mobile={16} tablet={16} computer={16}>
                     <SearchAppResultsPane
@@ -97,14 +109,17 @@ export const UserDashboardSearchAppLayoutHOC = ({
 
 UserDashboardSearchAppLayoutHOC.propTypes = {
   placeholder: PropTypes.string,
-  extraContent: PropTypes.func,
-  extraRow: PropTypes.func,
+  extraContent: PropTypes.oneOfType([PropTypes.func, PropTypes.oneOf([null])]),
+  mobileOnlyExtraRow: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.oneOf([null]),
+  ]),
   appName: PropTypes.string,
 };
 
 UserDashboardSearchAppLayoutHOC.defaultProps = {
-  extraContent: () => null,
-  extraRow: null,
+  extraContent: null,
+  mobileOnlyExtraRow: null,
   appName: undefined,
   placeholder: "",
 };
