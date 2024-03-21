@@ -4,6 +4,8 @@ from invenio_search_ui.searchconfig import FacetsConfig, SearchAppConfig, SortCo
 from invenio_records_resources.proxies import current_service_registry
 from flask_menu import current_menu
 from oarepo_runtime.i18n import lazy_gettext as _
+from flask_security import login_required
+
 
 sort_options = {
     "title": dict(
@@ -118,6 +120,7 @@ class DashboardPageResourceConfig(TemplatePageUIResourceConfig):
 
 
 class DashboardPageResource(TemplatePageUIResource):
+    @login_required
     def render_DashboardRecordsPage(self, **kwargs):
         search_app_config = self.config.records_search_app_config(
             # TODO: patch for search app config issue in invenio https://github.com/inveniosoftware/invenio-search-ui/issues/196
@@ -131,6 +134,7 @@ class DashboardPageResource(TemplatePageUIResource):
             "DashboardRecordsPage", search_app_config=search_app_config, **kwargs
         )
 
+    @login_required
     def render_DashboardCommunitiesPage(self, **kwargs):
         search_app_config = self.config.communities_search_app_config(
             overrides={
@@ -142,6 +146,7 @@ class DashboardPageResource(TemplatePageUIResource):
             "DashboardCommunitiesPage", search_app_config=search_app_config, **kwargs
         )
 
+    @login_required
     def render_DashboardRequestsPage(self, **kwargs):
         search_app_config = self.config.requests_search_app_config(
             overrides={

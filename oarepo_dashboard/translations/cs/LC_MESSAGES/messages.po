@@ -7,7 +7,7 @@ msgstr ""
 #: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/__init__.py:90
 #: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/__init__.py:110
 msgid "By Title"
-msgstr ""
+msgstr "Podle názvu"
 
 #: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/__init__.py:36
 #: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/__init__.py:56
@@ -16,7 +16,7 @@ msgstr ""
 #: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/__init__.py:161
 #: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/__init__.py:175
 msgid "Best match"
-msgstr ""
+msgstr "Nejlepší shoda"
 
 #: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/__init__.py:40
 #: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/__init__.py:60
@@ -25,7 +25,7 @@ msgstr ""
 #: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/__init__.py:165
 #: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/__init__.py:179
 msgid "Newest"
-msgstr ""
+msgstr "Nejnovější"
 
 #: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/__init__.py:44
 #: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/__init__.py:64
@@ -34,19 +34,19 @@ msgstr ""
 #: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/__init__.py:169
 #: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/__init__.py:183
 msgid "Oldest"
-msgstr ""
+msgstr "Nejstarší"
 
 #: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/__init__.py:231
 msgid "Records"
-msgstr ""
+msgstr "Nahráno"
 
 #: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/__init__.py:237
 msgid "Communities"
-msgstr ""
+msgstr "Komunity"
 
 #: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/__init__.py:243
 msgid "Requests"
-msgstr ""
+msgstr "Žádosti"
 
 msgid "profile"
 msgstr "profil"
@@ -107,3 +107,19 @@ msgstr "Hledat v mých žádostech..."
 
 msgid "Opened by"
 msgstr "Otevřeno {{relativeTime}} uživatelem"
+
+#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/__init__.py:185
+msgid "Dashboard"
+msgstr "Přehled"
+
+msgid "Create new draft"
+msgstr "Vytvořit nový koncept"
+
+msgid "Edit record"
+msgstr "Úprava záznamu"
+
+msgid "Delete record"
+msgstr "Smazání záznamu"
+
+msgid "Publish record"
+msgstr "Vypublikování záznamů"
