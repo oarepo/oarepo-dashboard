@@ -16,16 +16,7 @@ import { i18next } from "@translations/oarepo_dashboard";
 import { FacetsButtonGroup } from "./FacetsButtonGroup";
 import { ComputerTabletRequestsListItem } from "./ComputerTabletRequestsListItem";
 import { MobileRequestsListItem } from "./MobileRequestsListItem";
-import {
-  LabelTypeEditRecord,
-  LabelTypeDeleteRecord,
-  LabelTypePublishRecord,
-} from "./labels/TypeLabels";
-import {
-  PublishRecordIcon,
-  DeleteRecordIcon,
-  EditRecordIcon,
-} from "./icons/TypeIcons";
+import { requestTypeSpecificComponents } from "./RequestTypeSpecificComponents";
 
 const [searchAppConfig, ..._] = parseSearchAppConfigs();
 const { overridableIdPrefix } = searchAppConfig;
@@ -95,16 +86,10 @@ export const componentOverrides = {
     UserDashboardSearchAppResultViewWAppName,
   [`${overridableIdPrefix}.SearchBar.element`]: SearchappSearchbarElement,
   [`${overridableIdPrefix}.SearchApp.layout`]: DashboardUploadsSearchLayout,
+  // from invenio requests in case we have some overlapping request types
   ...defaultContribComponents,
-  [`RequestTypeLabel.layout.documents_edit_record`]: LabelTypeEditRecord,
-  [`RequestTypeLabel.layout.documents_delete_record`]: LabelTypeDeleteRecord,
-  [`RequestTypeLabel.layout.documents_publish_draft`]: LabelTypePublishRecord,
-  [`InvenioRequests.RequestTypeIcon.layout.documents_edit_record`]:
-    EditRecordIcon,
-  [`InvenioRequests.RequestTypeIcon.layout.documents_delete_record`]:
-    DeleteRecordIcon,
-  [`InvenioRequests.RequestTypeIcon.layout.documents_publish_draft`]:
-    PublishRecordIcon,
+  // our request type specific components (icons, labels, etc.)
+  ...requestTypeSpecificComponents,
 };
 
 createSearchAppsInit({ componentOverrides });

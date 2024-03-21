@@ -8,6 +8,7 @@ import { i18next } from "@translations/oarepo_dashboard";
 import React from "react";
 import RequestTypeLabel from "@js/invenio_requests/request/RequestTypeLabel";
 import RequestStatusLabel from "@js/invenio_requests/request/RequestStatusLabel";
+import { default as RequestTypeIcon } from "@js/invenio_requests/components/RequestTypeIcon";
 import { Icon, Item } from "semantic-ui-react";
 import PropTypes from "prop-types";
 import { toRelativeTime } from "react-invenio-forms";
@@ -40,10 +41,6 @@ export const MobileRequestsListItem = ({
   const getUserIcon = (receiver) => {
     return receiver?.is_ghost ? "user secret" : "users";
   };
-  const getTypeIcon = (type) => {
-    if (type === "community-invitation") return "user plus";
-    else return "plus";
-  };
 
   return (
     <Item
@@ -59,11 +56,7 @@ export const MobileRequestsListItem = ({
         </Item.Extra>
         <Item.Header className="truncate-lines-2 rel-mt-1">
           <a className="header-link p-0" href={detailsURL}>
-            <Icon
-              size="small"
-              name={getTypeIcon(result.type)}
-              className="neutral mr-5"
-            />
+            <RequestTypeIcon type={result.type} />
             {result.title}
           </a>
         </Item.Header>
