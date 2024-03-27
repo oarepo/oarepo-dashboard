@@ -32,7 +32,7 @@ class DashboardRequestsUIResourceConfig(RecordsUIResourceConfig):
     ]
 
     def search_endpoint_url(self, identity, api_config, overrides={}, **kwargs):
-        return "/api/requests"
+        return "/api/user/requests"
 
 
 class DashboardRequestsUIResource(RecordsUIResource):
