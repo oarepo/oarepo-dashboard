@@ -16,11 +16,11 @@ class DashboardRecordsUIResourceConfig(RecordsUIResourceConfig):
     }
 
     routes = {
-        "create": "/<vocabulary_type>/_new",
-        "edit": "/<vocabulary_type>/<pid_value>/edit",
+        "create": "/dummy-route",
+        "edit": "/dummy-route",
         "search": "/",
-        "detail": "/<vocabulary_type>/<pid_value>",
-        "export": "/<vocabulary_type>/<pid_value>/export/<export_format>",
+        "detail": "/dummy-route",
+        "export": "/dummy-route",
     }
     api_service = "documents"
 

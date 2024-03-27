@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-27 07:05+0100\n"
+"POT-Creation-Date: 2024-03-27 14:43+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,6 +42,12 @@ msgstr ""
 msgid "Restricted"
 msgstr ""
 
+msgid "Open"
+msgstr ""
+
+msgid "Closed"
+msgstr ""
+
 msgid "Filter results"
 msgstr ""
 
@@ -58,12 +64,6 @@ msgid "Opened by"
 msgstr ""
 
 msgid "Expires at: {{- expiringDate}}"
-msgstr ""
-
-msgid "Open"
-msgstr ""
-
-msgid "Closed"
 msgstr ""
 
 msgid "My"

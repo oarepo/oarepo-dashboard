@@ -34,7 +34,7 @@ export const ComputerTabledCommunitiesListItem = ({
           <div style={{ flexShrink: 100 }}>
             {isRestricted && (
               <div className="rel-mb-1">
-                <RestrictedLabel access={result.access.visibility} />
+                <RestrictedLabel />
               </div>
             )}
             {/* TODO: Need to get ui link for members in a better way */}

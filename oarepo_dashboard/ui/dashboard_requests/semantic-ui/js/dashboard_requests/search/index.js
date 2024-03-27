@@ -13,9 +13,9 @@ import { PropTypes } from "prop-types";
 import {
   UserDashboardSearchAppLayoutHOC,
   UserDashboardSearchAppResultView,
+  FacetsButtonGroup,
 } from "@js/dashboard_components";
 import { i18next } from "@translations/oarepo_dashboard";
-import { FacetsButtonGroup } from "./FacetsButtonGroup";
 import { ComputerTabletRequestsListItem } from "./ComputerTabletRequestsListItem";
 import { MobileRequestsListItem } from "./MobileRequestsListItem";
 import { requestTypeSpecificComponents } from "./RequestTypeSpecificComponents";

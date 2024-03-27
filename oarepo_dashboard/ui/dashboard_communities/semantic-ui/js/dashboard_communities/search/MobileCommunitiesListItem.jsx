@@ -23,7 +23,7 @@ export const MobileCommunitiesListItem = ({
       {isRestricted && (
         <Grid.Row>
           <Grid.Column width={16} verticalAlign="middle" className="pl-0 pr-0">
-            <RestrictedLabel access={result.access.visibility} />
+            <RestrictedLabel />
           </Grid.Column>
         </Grid.Row>
       )}
