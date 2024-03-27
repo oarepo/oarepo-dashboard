@@ -13,8 +13,7 @@ import {
   DynamicResultsListItem,
 } from "@js/oarepo_ui";
 
-const [searchAppConfig, ..._] = parseSearchAppConfigs();
-const { overridableIdPrefix } = searchAppConfig;
+const [{ overridableIdPrefix }] = parseSearchAppConfigs();
 
 // TODO: currently, we don't support multiple models, so create new
 // can be just a regular button, not a dropdown with options

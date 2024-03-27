@@ -20,21 +20,21 @@ import { ComputerTabletRequestsListItem } from "./ComputerTabletRequestsListItem
 import { MobileRequestsListItem } from "./MobileRequestsListItem";
 import { requestTypeSpecificComponents } from "./RequestTypeSpecificComponents";
 
-const [searchAppConfig, ..._] = parseSearchAppConfigs();
-const { overridableIdPrefix } = searchAppConfig;
+const [{ overridableIdPrefix }] = parseSearchAppConfigs();
+
 export function RequestsResultsItemTemplateDashboard({ result }) {
   const ComputerTabletRequestsItemWithState = withState(
     ComputerTabletRequestsListItem
   );
   const MobileRequestsItemWithState = withState(MobileRequestsListItem);
-  const detailsURL = `/me/requests/${result.id}`;
+  const detailPageUrl = `/docs/${result?.topic?.documents}`;
   return (
     <>
       <ComputerTabletRequestsItemWithState
         result={result}
-        detailsURL={detailsURL}
+        detailsURL={detailPageUrl}
       />
-      <MobileRequestsItemWithState result={result} detailsURL={detailsURL} />
+      <MobileRequestsItemWithState result={result} detailsURL={detailPageUrl} />
     </>
   );
 }

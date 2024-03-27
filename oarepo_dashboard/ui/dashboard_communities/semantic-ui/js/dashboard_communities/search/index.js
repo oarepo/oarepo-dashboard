@@ -17,8 +17,7 @@ import {
 } from "@js/dashboard_components";
 import { i18next } from "@translations/oarepo_dashboard";
 
-const [searchAppConfig, ..._] = parseSearchAppConfigs();
-const { overridableIdPrefix } = searchAppConfig;
+const [{ overridableIdPrefix }] = parseSearchAppConfigs();
 
 export const UserDashboardCommunitiesListItem = ({
   result,
