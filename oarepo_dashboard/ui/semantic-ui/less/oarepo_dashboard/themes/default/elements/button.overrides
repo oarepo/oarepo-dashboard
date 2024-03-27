@@ -1,5 +1,0 @@
-.ui.active.button {
-  &.request-search-filter {
-    cursor: default;
-  }
-}
