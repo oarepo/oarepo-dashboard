@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-03-21 08:35+0100\n"
+"POT-Creation-Date: 2024-03-27 07:05+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,36 +17,20 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.14.0\n"
 
-#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/__init__.py:10
-msgid "By Title"
-msgstr ""
-
-#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/__init__.py:14
-msgid "Best match"
-msgstr ""
-
-#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/__init__.py:18
-msgid "Newest"
-msgstr ""
-
-#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/__init__.py:22
-msgid "Oldest"
-msgstr ""
-
-#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/__init__.py:166
-msgid "Records"
-msgstr ""
-
-#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/__init__.py:172
+#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/dashboard_communities/__init__.py:46
 msgid "Communities"
 msgstr ""
 
-#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/__init__.py:178
-msgid "Requests"
+#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/dashboard_records/__init__.py:46
+msgid "Records"
 msgstr ""
 
-#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/__init__.py:185
+#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/dashboard_records/__init__.py:54
 msgid "Dashboard"
+msgstr ""
+
+#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/dashboard_requests/__init__.py:53
+msgid "Requests"
 msgstr ""
 
 msgid "profile"
