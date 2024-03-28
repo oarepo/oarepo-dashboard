@@ -7,15 +7,19 @@
 // Invenio App RDM is free software; you can redistribute it and/or modify it
 // under the terms of the MIT License; see LICENSE file for more details.
 
-import { SearchAppResultsPane } from "@js/invenio_search_ui/components";
+import {
+  SearchAppResultsPane,
+  SearchConfigurationContext,
+} from "@js/invenio_search_ui/components";
 import { i18next } from "@translations/oarepo_dashboard";
-import React from "react";
+import React, { useContext } from "react";
 import { SearchBar, ActiveFilters } from "react-searchkit";
 import { GridResponsiveSidebarColumn } from "react-invenio-forms";
 import { Grid, Button, Container } from "semantic-ui-react";
 import PropTypes from "prop-types";
 import { SearchAppFacets, ClearFiltersButton } from "@js/oarepo_ui";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Overridable from "react-overridable";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +32,8 @@ export const UserDashboardSearchAppLayoutHOC = ({
   const DashboardUploadsSearchLayout = (props) => {
     const [sidebarVisible, setSidebarVisible] = React.useState(false);
     const { config } = props;
+    const searchAppContext = useContext(SearchConfigurationContext);
+    const { buildUID } = searchAppContext;
     return (
       <QueryClientProvider client={queryClient}>
         <Container className="rel-mt-4 rel-mb-4">
@@ -44,7 +50,9 @@ export const UserDashboardSearchAppLayoutHOC = ({
                 <Grid.Row only="computer" verticalAlign="middle">
                   <Grid.Column>
                     <ActiveFilters />
-                    <ClearFiltersButton />
+                    <Overridable id={buildUID("ClearFiltersButton.container")}>
+                      <ClearFiltersButton />
+                    </Overridable>
                   </Grid.Column>
                 </Grid.Row>
                 <Grid.Row only="computer" verticalAlign="middle">
@@ -81,7 +89,9 @@ export const UserDashboardSearchAppLayoutHOC = ({
                 )}
                 <Grid.Row only="mobile tablet">
                   <Grid.Column>
-                    <ClearFiltersButton />
+                    <Overridable id={buildUID("ClearFiltersButton.container")}>
+                      <ClearFiltersButton />
+                    </Overridable>
                   </Grid.Column>
                 </Grid.Row>
                 <Grid.Row>

@@ -123,3 +123,18 @@ msgstr ""
 
 msgid "Publish record"
 msgstr ""
+
+msgid "Recepient: "
+msgstr ""
+
+msgid "Opened by {{creatorName}} on {{created}}"
+msgstr ""
+
+msgid "Recepient: {{reciever}}"
+msgstr ""
+
+msgid "Opened by {{creatorName}} on {{created}}."
+msgstr ""
+
+msgid "Recepient: {{receiver}}."
+msgstr ""

@@ -5,6 +5,8 @@ import {
   createSearchAppsInit,
   parseSearchAppConfigs,
   SearchappSearchbarElement,
+  ActiveFiltersElement,
+  ClearFiltersButton,
 } from "@js/oarepo_ui";
 import { withState } from "react-searchkit";
 import { RequestsEmptyResultsWithState } from "@js/invenio_requests/search";
@@ -13,7 +15,8 @@ import { PropTypes } from "prop-types";
 import {
   UserDashboardSearchAppLayoutHOC,
   UserDashboardSearchAppResultView,
-  FacetsButtonGroup,
+  FacetsButtonGroupValueToggler,
+  FacetsButtonGroupNameToggler,
 } from "@js/dashboard_components";
 import { i18next } from "@translations/oarepo_dashboard";
 import { ComputerTabletRequestsListItem } from "./ComputerTabletRequestsListItem";
@@ -27,7 +30,7 @@ export function RequestsResultsItemTemplateDashboard({ result }) {
     ComputerTabletRequestsListItem
   );
   const MobileRequestsItemWithState = withState(MobileRequestsListItem);
-  const detailPageUrl = `/docs/${result?.topic?.documents}`;
+  const detailPageUrl = `/docs/${result?.topic?.reference?.documents}`;
   return (
     <>
       <ComputerTabletRequestsItemWithState
@@ -42,28 +45,19 @@ export function RequestsResultsItemTemplateDashboard({ result }) {
 RequestsResultsItemTemplateDashboard.propTypes = {
   result: PropTypes.object.isRequired,
 };
-// TODO: currently there is no API to determine if request is mine or not
 export const FacetButtons = () => (
   <React.Fragment>
     <Grid.Column only="computer" textAlign="right">
-      <FacetsButtonGroup facetName="is_open" />
-      {/* <span className="rel-ml-2"></span> */}
-      {/* <FacetsButtonGroup
-        facetName="is_mine"
-        trueButtonText={i18next.t("My")}
-        falseButtonText={i18next.t("Others")}
-      /> */}
+      <FacetsButtonGroupValueToggler facetName="is_open" />
+      <span className="rel-ml-2"></span>
+      <FacetsButtonGroupNameToggler facetNames={["mine", "assigned"]} />
     </Grid.Column>
     <Grid.Column only="mobile tablet" textAlign="left">
-      <FacetsButtonGroup facetName="is_open" />
+      <FacetsButtonGroupValueToggler facetName="is_open" />
     </Grid.Column>
-    {/* <Grid.Column only="mobile tablet" textAlign="right">
-      <FacetsButtonGroup
-        facetName="is_mine"
-        trueButtonText={i18next.t("My")}
-        falseButtonText={i18next.t("Others")}
-      />
-    </Grid.Column> */}
+    <Grid.Column only="mobile tablet" textAlign="right">
+      <FacetsButtonGroupNameToggler facetNames={["mine", "assigned"]} />
+    </Grid.Column>
   </React.Fragment>
 );
 
@@ -74,6 +68,12 @@ const UserDashboardSearchAppResultViewWAppName = parametrize(
   }
 );
 
+const ActiveFiltersElementWIgnoredFilters = parametrize(ActiveFiltersElement, {
+  ignoredFilters: ["mine", "assigned"],
+});
+const ClearFiltersButtonWIgnoredFilters = parametrize(ClearFiltersButton, {
+  ignoredFilters: ["mine", "assigned"],
+});
 export const DashboardUploadsSearchLayout = UserDashboardSearchAppLayoutHOC({
   placeholder: i18next.t("Search in my requests..."),
   extraContent: FacetButtons,
@@ -84,6 +84,10 @@ export const componentOverrides = {
     RequestsEmptyResultsWithState,
   [`${overridableIdPrefix}.ResultsList.item`]:
     RequestsResultsItemTemplateDashboard,
+  [`${overridableIdPrefix}.ActiveFilters.element`]:
+    ActiveFiltersElementWIgnoredFilters,
+  [`${overridableIdPrefix}.ClearFiltersButton.container`]:
+    ClearFiltersButtonWIgnoredFilters,
   [`${overridableIdPrefix}.SearchApp.results`]:
     UserDashboardSearchAppResultViewWAppName,
   [`${overridableIdPrefix}.SearchBar.element`]: SearchappSearchbarElement,

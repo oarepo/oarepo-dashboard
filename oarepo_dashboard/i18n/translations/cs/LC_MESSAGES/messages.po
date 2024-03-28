@@ -123,3 +123,9 @@ msgstr "Smazání záznamu"
 
 msgid "Publish record"
 msgstr "Vypublikování záznamů"
+
+msgid "Opened by {{creatorName}} on {{created}}."
+msgstr "Otevřeno uživatelem {{creatorName}} na {{created}}."
+
+msgid "Recepient: {{receiver}}."
+msgstr "Příjemce: {{receiver}}"
