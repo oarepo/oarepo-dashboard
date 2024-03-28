@@ -1,3 +1,4 @@
 export * from "./UserDashboardSearchAppLayout";
 export * from "./UserDashboardSearchAppResultView";
-export * from "./FacetsButtonGroup";
+export * from "./FacetsButtonGroupValueToggler";
+export * from "./FacetsButtonGroupNameToggler";

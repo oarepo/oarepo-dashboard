@@ -5,7 +5,7 @@ import { Button } from "semantic-ui-react";
 import { withState } from "react-searchkit";
 import { SearchConfigurationContext } from "@js/invenio_search_ui/components";
 
-const FacetsButtonGroupComponent = ({
+const FacetsButtonGroupValueTogglerComponent = ({
   currentResultsState,
   currentQueryState,
   updateQueryState,
@@ -21,9 +21,11 @@ const FacetsButtonGroupComponent = ({
   );
   const initialQueryFacets = initialQueryState.filters?.map((f) => f[0]);
   if (!currentFilter)
-    console.error("FacetsButtonGroup: Facet name not provided");
+    console.error(
+      "FacetsButtonGroup: Query does not contain this facet, make sure initial filters are set properly"
+    );
   const currentStatus = currentFilter && JSON.parse(currentFilter?.[1]);
-  const handleFilterChange = (status) => {
+  const handeFacetStatusChange = (status) => {
     if (currentStatus === status) return;
 
     currentQueryState.filters = keepFiltersOnUpdate
@@ -45,14 +47,14 @@ const FacetsButtonGroupComponent = ({
   return (
     <Button.Group size="mini" className="rel-mb-1" {...uiProps}>
       <Button
-        onClick={() => handleFilterChange(true)}
+        onClick={() => handeFacetStatusChange(true)}
         className="request-search-filter"
         active={currentStatus}
       >
         {trueButtonText}
       </Button>
       <Button
-        onClick={() => handleFilterChange(false)}
+        onClick={() => handeFacetStatusChange(false)}
         className="request-search-filter"
         active={!currentStatus}
       >
@@ -62,7 +64,7 @@ const FacetsButtonGroupComponent = ({
   );
 };
 
-FacetsButtonGroupComponent.propTypes = {
+FacetsButtonGroupValueTogglerComponent.propTypes = {
   currentQueryState: PropTypes.object.isRequired,
   updateQueryState: PropTypes.func.isRequired,
   currentResultsState: PropTypes.object.isRequired,
@@ -71,9 +73,11 @@ FacetsButtonGroupComponent.propTypes = {
   falseButtonText: PropTypes.string,
   keepFiltersOnUpdate: PropTypes.bool,
 };
-FacetsButtonGroupComponent.defaultProps = {
+FacetsButtonGroupValueTogglerComponent.defaultProps = {
   trueButtonText: i18next.t("Open"),
   falseButtonText: i18next.t("Closed"),
   keepFiltersOnUpdate: true,
 };
-export const FacetsButtonGroup = withState(FacetsButtonGroupComponent);
+export const FacetsButtonGroupValueToggler = withState(
+  FacetsButtonGroupValueTogglerComponent
+);

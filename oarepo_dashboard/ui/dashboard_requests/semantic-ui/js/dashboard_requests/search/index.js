@@ -5,6 +5,7 @@ import {
   createSearchAppsInit,
   parseSearchAppConfigs,
   SearchappSearchbarElement,
+  ActiveFiltersElement,
 } from "@js/oarepo_ui";
 import { withState } from "react-searchkit";
 import { RequestsEmptyResultsWithState } from "@js/invenio_requests/search";
@@ -13,7 +14,8 @@ import { PropTypes } from "prop-types";
 import {
   UserDashboardSearchAppLayoutHOC,
   UserDashboardSearchAppResultView,
-  FacetsButtonGroup,
+  FacetsButtonGroupValueToggler,
+  FacetsButtonGroupNameToggler,
 } from "@js/dashboard_components";
 import { i18next } from "@translations/oarepo_dashboard";
 import { ComputerTabletRequestsListItem } from "./ComputerTabletRequestsListItem";
@@ -28,6 +30,7 @@ export function RequestsResultsItemTemplateDashboard({ result }) {
   );
   const MobileRequestsItemWithState = withState(MobileRequestsListItem);
   const detailPageUrl = `/docs/${result?.topic?.documents}`;
+  console.log(result);
   return (
     <>
       <ComputerTabletRequestsItemWithState
@@ -46,24 +49,16 @@ RequestsResultsItemTemplateDashboard.propTypes = {
 export const FacetButtons = () => (
   <React.Fragment>
     <Grid.Column only="computer" textAlign="right">
-      <FacetsButtonGroup facetName="is_open" />
-      {/* <span className="rel-ml-2"></span> */}
-      {/* <FacetsButtonGroup
-        facetName="is_mine"
-        trueButtonText={i18next.t("My")}
-        falseButtonText={i18next.t("Others")}
-      /> */}
+      <FacetsButtonGroupValueToggler facetName="is_open" />
+      <span className="rel-ml-2"></span>
+      <FacetsButtonGroupNameToggler facetNames={["mine", "assigned"]} />
     </Grid.Column>
     <Grid.Column only="mobile tablet" textAlign="left">
-      <FacetsButtonGroup facetName="is_open" />
+      <FacetsButtonGroupValueToggler facetName="is_open" />
     </Grid.Column>
-    {/* <Grid.Column only="mobile tablet" textAlign="right">
-      <FacetsButtonGroup
-        facetName="is_mine"
-        trueButtonText={i18next.t("My")}
-        falseButtonText={i18next.t("Others")}
-      />
-    </Grid.Column> */}
+    <Grid.Column only="mobile tablet" textAlign="right">
+      <FacetsButtonGroupNameToggler facetNames={["mine", "assigned"]} />
+    </Grid.Column>
   </React.Fragment>
 );
 
@@ -73,6 +68,10 @@ const UserDashboardSearchAppResultViewWAppName = parametrize(
     appName: overridableIdPrefix,
   }
 );
+
+const ActiveFiltersElementWIgnoredFilters = parametrize(ActiveFiltersElement, {
+  ignoredFacets: ["mine", "assigned"],
+});
 
 export const DashboardUploadsSearchLayout = UserDashboardSearchAppLayoutHOC({
   placeholder: i18next.t("Search in my requests..."),
@@ -84,6 +83,9 @@ export const componentOverrides = {
     RequestsEmptyResultsWithState,
   [`${overridableIdPrefix}.ResultsList.item`]:
     RequestsResultsItemTemplateDashboard,
+  [`${overridableIdPrefix}.ActiveFilters.element`]:
+    ActiveFiltersElementWIgnoredFilters,
+
   [`${overridableIdPrefix}.SearchApp.results`]:
     UserDashboardSearchAppResultViewWAppName,
   [`${overridableIdPrefix}.SearchBar.element`]: SearchappSearchbarElement,
