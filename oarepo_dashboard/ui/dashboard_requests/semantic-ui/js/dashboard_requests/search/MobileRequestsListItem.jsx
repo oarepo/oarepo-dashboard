@@ -11,7 +11,6 @@ import RequestStatusLabel from "@js/invenio_requests/request/RequestStatusLabel"
 import { default as RequestTypeIcon } from "@js/invenio_requests/components/RequestTypeIcon";
 import { Icon, Item } from "semantic-ui-react";
 import PropTypes from "prop-types";
-import { toRelativeTime } from "react-invenio-forms";
 import { DateTime } from "luxon";
 
 export const MobileRequestsListItem = ({
@@ -20,10 +19,8 @@ export const MobileRequestsListItem = ({
   currentQueryState,
   detailsURL,
 }) => {
-  const createdDate = new Date(result.created);
   let creatorName = result.created_by.label;
 
-  const relativeTime = toRelativeTime(createdDate, i18next.language);
   const getUserIcon = (receiver) => {
     return receiver?.is_ghost ? "user secret" : "users";
   };
@@ -58,8 +55,14 @@ export const MobileRequestsListItem = ({
         </p>
         <Item.Meta>
           <small>
-            {i18next.t("Opened by", { relativeTime: relativeTime })}{" "}
-            {creatorName}
+            {i18next.t("Opened by {{creatorName}} on {{created}}.", {
+              creatorName: creatorName,
+              created: result.created,
+            })}{" "}
+            {result.receiver &&
+              i18next.t("Recepient: {{receiver}}.", {
+                receiver: result.receiver.label,
+              })}
           </small>
           <small className="block rel-mt-1">
             {result.receiver?.community &&

@@ -29,7 +29,6 @@ export function RequestsResultsItemTemplateDashboard({ result }) {
   const ComputerTabletRequestsItemWithState = withState(
     ComputerTabletRequestsListItem
   );
-  console.log(result);
   const MobileRequestsItemWithState = withState(MobileRequestsListItem);
   const detailPageUrl = `/docs/${result?.topic?.reference?.documents}`;
   return (
