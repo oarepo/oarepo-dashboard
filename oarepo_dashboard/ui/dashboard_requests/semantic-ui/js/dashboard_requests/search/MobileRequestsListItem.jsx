@@ -21,23 +21,9 @@ export const MobileRequestsListItem = ({
   detailsURL,
 }) => {
   const createdDate = new Date(result.created);
-  let creatorName = "";
-  const isCreatorUser = "user" in result.created_by;
-  const isCreatorCommunity = "community" in result.created_by;
-  if (isCreatorUser) {
-    creatorName =
-      result.expanded?.created_by.profile?.full_name ||
-      result.expanded?.created_by.username ||
-      result.created_by.user;
-  } else if (isCreatorCommunity) {
-    creatorName =
-      result.expanded?.created_by.metadata?.title ||
-      result.created_by.community;
-  }
-  const relativeTime = toRelativeTime(
-    createdDate.toISOString(),
-    i18next.language
-  );
+  let creatorName = result.created_by.label;
+
+  const relativeTime = toRelativeTime(createdDate, i18next.language);
   const getUserIcon = (receiver) => {
     return receiver?.is_ghost ? "user secret" : "users";
   };
@@ -54,12 +40,22 @@ export const MobileRequestsListItem = ({
             <RequestStatusLabel status={result.status} />
           )}
         </Item.Extra>
-        <Item.Header className="truncate-lines-2 rel-mt-1">
-          <a className="header-link p-0" href={detailsURL}>
+        {result?.topic?.status === "removed" ? (
+          <Item.Header className="truncate-lines-2 rel-mt-1">
             <RequestTypeIcon type={result.type} />
-            {result.title}
-          </a>
-        </Item.Header>
+            {result?.name || result?.title}
+          </Item.Header>
+        ) : (
+          <Item.Header className="truncate-lines-2 rel-mt-1">
+            <a className="header-link p-0" href={detailsURL}>
+              <RequestTypeIcon type={result.type} />
+              {result?.name || result?.title}
+            </a>
+          </Item.Header>
+        )}
+        <p className="rel-mt-1">
+          {result.description || i18next.t("No description")}
+        </p>
         <Item.Meta>
           <small>
             {i18next.t("Opened by", { relativeTime: relativeTime })}{" "}

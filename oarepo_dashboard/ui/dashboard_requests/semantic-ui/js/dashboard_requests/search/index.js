@@ -6,6 +6,7 @@ import {
   parseSearchAppConfigs,
   SearchappSearchbarElement,
   ActiveFiltersElement,
+  ClearFiltersButton,
 } from "@js/oarepo_ui";
 import { withState } from "react-searchkit";
 import { RequestsEmptyResultsWithState } from "@js/invenio_requests/search";
@@ -28,9 +29,9 @@ export function RequestsResultsItemTemplateDashboard({ result }) {
   const ComputerTabletRequestsItemWithState = withState(
     ComputerTabletRequestsListItem
   );
-  const MobileRequestsItemWithState = withState(MobileRequestsListItem);
-  const detailPageUrl = `/docs/${result?.topic?.documents}`;
   console.log(result);
+  const MobileRequestsItemWithState = withState(MobileRequestsListItem);
+  const detailPageUrl = `/docs/${result?.topic?.reference?.documents}`;
   return (
     <>
       <ComputerTabletRequestsItemWithState
@@ -45,7 +46,6 @@ export function RequestsResultsItemTemplateDashboard({ result }) {
 RequestsResultsItemTemplateDashboard.propTypes = {
   result: PropTypes.object.isRequired,
 };
-// TODO: currently there is no API to determine if request is mine or not
 export const FacetButtons = () => (
   <React.Fragment>
     <Grid.Column only="computer" textAlign="right">
@@ -70,9 +70,11 @@ const UserDashboardSearchAppResultViewWAppName = parametrize(
 );
 
 const ActiveFiltersElementWIgnoredFilters = parametrize(ActiveFiltersElement, {
-  ignoredFacets: ["mine", "assigned"],
+  ignoredFilters: ["mine", "assigned"],
 });
-
+const ClearFiltersButtonWIgnoredFilters = parametrize(ClearFiltersButton, {
+  ignoredFilters: ["mine", "assigned"],
+});
 export const DashboardUploadsSearchLayout = UserDashboardSearchAppLayoutHOC({
   placeholder: i18next.t("Search in my requests..."),
   extraContent: FacetButtons,
@@ -85,7 +87,8 @@ export const componentOverrides = {
     RequestsResultsItemTemplateDashboard,
   [`${overridableIdPrefix}.ActiveFilters.element`]:
     ActiveFiltersElementWIgnoredFilters,
-
+  [`${overridableIdPrefix}.ClearFiltersButton.container`]:
+    ClearFiltersButtonWIgnoredFilters,
   [`${overridableIdPrefix}.SearchApp.results`]:
     UserDashboardSearchAppResultViewWAppName,
   [`${overridableIdPrefix}.SearchBar.element`]: SearchappSearchbarElement,
