@@ -3,6 +3,7 @@ from oarepo_ui.resources.config import (
 )
 from oarepo_ui.resources.resource import RecordsUIResource
 from flask_menu import current_menu
+from flask_login import current_user
 from oarepo_runtime.i18n import lazy_gettext as _
 
 
@@ -40,6 +41,9 @@ def create_blueprint(app):
 
     @app_blueprint.before_app_first_request
     def init_menu():
+        if not current_user.is_authenticated:
+            return
+
         user_dashboard = current_menu.submenu("user_dashboard")
         user_dashboard.submenu("records").register(
             "records_dashboard.search",
