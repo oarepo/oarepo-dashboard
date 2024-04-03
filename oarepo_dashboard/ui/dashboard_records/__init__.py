@@ -41,14 +41,12 @@ def create_blueprint(app):
 
     @app_blueprint.before_app_first_request
     def init_menu():
-        if not current_user.is_authenticated:
-            return
-
         user_dashboard = current_menu.submenu("user_dashboard")
         user_dashboard.submenu("records").register(
             "records_dashboard.search",
             text=_("Records"),
             order=1,
+            visible_when=lambda: current_user and current_user.is_authenticated
         )
 
         # if you add dashboard to your project, the library adds itself to the main menu
@@ -57,6 +55,7 @@ def create_blueprint(app):
             "records_dashboard.search",
             _("Dashboard"),
             order=1,
+            visible_when=lambda: current_user and current_user.is_authenticated
         )
 
     return app_blueprint
