@@ -1,5 +1,8 @@
-.ui.active.button {
+.ui.button {
   &.request-search-filter {
-    cursor: default;
+    &.active {
+      cursor: default;
+    }
+    font-size: @mini;
   }
 }

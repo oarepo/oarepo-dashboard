@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
-import { i18next } from "@translations/oarepo_dashboard";
 import { Button } from "semantic-ui-react";
 import { withState } from "react-searchkit";
 import { SearchConfigurationContext } from "@js/invenio_search_ui/components";
@@ -74,10 +73,6 @@ FacetsButtonGroupNameTogglerComponent.propTypes = {
 };
 
 FacetsButtonGroupNameTogglerComponent.defaultProps = {
-  toggledFilters: [
-    { text: i18next.t("My"), filterName: "mine" },
-    { text: i18next.t("Others"), filterName: "assigned" },
-  ],
   keepFiltersOnUpdate: true,
 };
 export const FacetsButtonGroupNameToggler = withState(
