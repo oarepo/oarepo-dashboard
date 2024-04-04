@@ -52,13 +52,25 @@ export const FacetButtons = () => (
     <Grid.Column only="computer" textAlign="right">
       <RequestStatusFilter keepFiltersOnUpdate />
       <span className="rel-ml-2"></span>
-      <FacetsButtonGroupNameToggler basic facetNames={["mine", "assigned"]} />
+      <FacetsButtonGroupNameToggler
+        basic
+        toggledFilters={[
+          { text: i18next.t("My"), filterName: "mine" },
+          { text: i18next.t("Others"), filterName: "assigned" },
+        ]}
+      />
     </Grid.Column>
     <Grid.Column only="mobile tablet" textAlign="left">
       <RequestStatusFilter keepFiltersOnUpdate />
     </Grid.Column>
     <Grid.Column only="mobile tablet" textAlign="right">
-      <FacetsButtonGroupNameToggler basic facetNames={["mine", "assigned"]} />
+      <FacetsButtonGroupNameToggler
+        basic
+        toggledFilters={[
+          { text: i18next.t("My"), filterName: "mine" },
+          { text: i18next.t("Others"), filterName: "assigned" },
+        ]}
+      />
     </Grid.Column>
   </React.Fragment>
 );
