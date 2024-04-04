@@ -9,13 +9,15 @@ import {
   ClearFiltersButton,
 } from "@js/oarepo_ui";
 import { withState } from "react-searchkit";
-import { RequestsEmptyResultsWithState } from "@js/invenio_requests/search";
+import {
+  RequestsEmptyResultsWithState,
+  RequestStatusFilter,
+} from "@js/invenio_requests/search";
 import { defaultContribComponents } from "@js/invenio_requests/contrib";
 import { PropTypes } from "prop-types";
 import {
   UserDashboardSearchAppLayoutHOC,
   UserDashboardSearchAppResultView,
-  FacetsButtonGroupValueToggler,
   FacetsButtonGroupNameToggler,
 } from "@js/dashboard_components";
 import { i18next } from "@translations/oarepo_dashboard";
@@ -48,15 +50,15 @@ RequestsResultsItemTemplateDashboard.propTypes = {
 export const FacetButtons = () => (
   <React.Fragment>
     <Grid.Column only="computer" textAlign="right">
-      <FacetsButtonGroupValueToggler facetName="is_open" />
+      <RequestStatusFilter keepFiltersOnUpdate />
       <span className="rel-ml-2"></span>
-      <FacetsButtonGroupNameToggler facetNames={["mine", "assigned"]} />
+      <FacetsButtonGroupNameToggler basic facetNames={["mine", "assigned"]} />
     </Grid.Column>
     <Grid.Column only="mobile tablet" textAlign="left">
-      <FacetsButtonGroupValueToggler facetName="is_open" />
+      <RequestStatusFilter keepFiltersOnUpdate />
     </Grid.Column>
     <Grid.Column only="mobile tablet" textAlign="right">
-      <FacetsButtonGroupNameToggler facetNames={["mine", "assigned"]} />
+      <FacetsButtonGroupNameToggler basic facetNames={["mine", "assigned"]} />
     </Grid.Column>
   </React.Fragment>
 );

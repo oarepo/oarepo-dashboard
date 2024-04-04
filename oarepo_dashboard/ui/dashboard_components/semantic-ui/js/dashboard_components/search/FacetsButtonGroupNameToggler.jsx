@@ -47,7 +47,7 @@ const FacetsButtonGroupNameTogglerComponent = ({
     updateQueryState(currentQueryState);
   };
   return (
-    <Button.Group size="mini" className="rel-mb-1" {...uiProps}>
+    <Button.Group className="rel-mb-1" {...uiProps}>
       <Button
         onClick={() => handleFacetNameChange(facetNames[0])}
         className="request-search-filter"

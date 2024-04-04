@@ -41,7 +41,7 @@ export const ComputerTabletRequestsListItem = ({
         <Item.Extra>
           {result.type && <RequestTypeLabel type={result.type} />}
           {result.status && result.is_closed && (
-            <RequestStatusLabel status={result.status} />
+            <RequestStatusLabel status={result.status_code} />
           )}
         </Item.Extra>
         {result?.topic?.status === "removed" ? (
