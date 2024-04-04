@@ -30,7 +30,7 @@ export const ComputerTabletRequestsListItem = ({
       key={result.id}
       className="computer tablet only rel-p-1 rel-mb-1 result-list-item request"
     >
-      <div className="status-icon mr-10 mt-5">
+      <div className="status-icon mr-10">
         <Item.Content verticalAlign="top">
           <Item.Extra>
             <RequestTypeIcon type={result.type} />
