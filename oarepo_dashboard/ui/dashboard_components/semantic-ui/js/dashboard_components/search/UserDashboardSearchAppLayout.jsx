@@ -17,7 +17,11 @@ import { SearchBar, ActiveFilters } from "react-searchkit";
 import { GridResponsiveSidebarColumn } from "react-invenio-forms";
 import { Grid, Button, Container } from "semantic-ui-react";
 import PropTypes from "prop-types";
-import { SearchAppFacets, ClearFiltersButton } from "@js/oarepo_ui";
+import {
+  SearchAppFacets,
+  ClearFiltersButton,
+  ShouldActiveFiltersRender,
+} from "@js/oarepo_ui";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Overridable from "react-overridable";
 
@@ -47,14 +51,18 @@ export const UserDashboardSearchAppLayoutHOC = ({
             </GridResponsiveSidebarColumn>
             <Grid.Column computer={13} mobile={16} tablet={16}>
               <Grid columns="equal">
-                <Grid.Row only="computer" verticalAlign="middle">
-                  <Grid.Column>
-                    <ActiveFilters />
-                    <Overridable id={buildUID("ClearFiltersButton.container")}>
-                      <ClearFiltersButton />
-                    </Overridable>
-                  </Grid.Column>
-                </Grid.Row>
+                <ShouldActiveFiltersRender>
+                  <Grid.Row only="computer" verticalAlign="middle">
+                    <Grid.Column>
+                      <ActiveFilters />
+                      <Overridable
+                        id={buildUID("ClearFiltersButton.container")}
+                      >
+                        <ClearFiltersButton />
+                      </Overridable>
+                    </Grid.Column>
+                  </Grid.Row>
+                </ShouldActiveFiltersRender>
                 <Grid.Row only="computer" verticalAlign="middle">
                   <Grid.Column>
                     <SearchBar placeholder={placeholder} className="rel-pl-1" />
@@ -87,13 +95,17 @@ export const UserDashboardSearchAppLayoutHOC = ({
                     {mobileOnlyExtraRow()}
                   </Grid.Row>
                 )}
-                <Grid.Row only="mobile tablet">
-                  <Grid.Column>
-                    <Overridable id={buildUID("ClearFiltersButton.container")}>
-                      <ClearFiltersButton />
-                    </Overridable>
-                  </Grid.Column>
-                </Grid.Row>
+                <ShouldActiveFiltersRender>
+                  <Grid.Row only="mobile tablet">
+                    <Grid.Column>
+                      <Overridable
+                        id={buildUID("ClearFiltersButton.container")}
+                      >
+                        <ClearFiltersButton />
+                      </Overridable>
+                    </Grid.Column>
+                  </Grid.Row>
+                </ShouldActiveFiltersRender>
                 <Grid.Row>
                   <Grid.Column mobile={16} tablet={16} computer={16}>
                     <SearchAppResultsPane

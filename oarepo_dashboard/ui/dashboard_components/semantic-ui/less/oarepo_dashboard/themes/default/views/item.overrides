@@ -9,3 +9,9 @@
     border-top: none !important;
   }
 }
+
+// to override strange behavior of SUI where even though header is not a link
+// you get link color on hover of the item
+.ui.link.items > .item:hover .content .header {
+  color: inherit;
+}
