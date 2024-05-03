@@ -1,13 +1,11 @@
-from oarepo_ui.resources.config import (
-    RecordsUIResourceConfig,
-)
 from oarepo_ui.resources.resource import RecordsUIResource
 from flask_menu import current_menu
 from flask_login import current_user
 from oarepo_runtime.i18n import lazy_gettext as _
+from oarepo_global_search.ui.config import GlobalSearchUIResourceConfig
 
 
-class DashboardRecordsUIResourceConfig(RecordsUIResourceConfig):
+class DashboardRecordsUIResourceConfig(GlobalSearchUIResourceConfig):
     url_prefix = "/me/records/"
     blueprint_name = "records_dashboard"
     template_folder = "templates"
@@ -17,16 +15,12 @@ class DashboardRecordsUIResourceConfig(RecordsUIResourceConfig):
     }
 
     routes = {
-        "create": "/dummy-route",
-        "edit": "/dummy-route",
         "search": "/",
-        "detail": "/dummy-route",
-        "export": "/dummy-route",
     }
-    api_service = "documents"
+    api_service = "records"
 
     def search_endpoint_url(self, identity, api_config, overrides={}, **kwargs):
-        return f"/api/user{api_config.url_prefix}"
+        return f"/api/user/search"
 
 
 class DashboardRecordsUIResource(RecordsUIResource):
@@ -46,7 +40,7 @@ def create_blueprint(app):
             "records_dashboard.search",
             text=_("Records"),
             order=1,
-            visible_when=lambda: current_user and current_user.is_authenticated
+            visible_when=lambda: current_user and current_user.is_authenticated,
         )
 
         # if you add dashboard to your project, the library adds itself to the main menu
@@ -55,7 +49,7 @@ def create_blueprint(app):
             "records_dashboard.search",
             _("Dashboard"),
             order=1,
-            visible_when=lambda: current_user and current_user.is_authenticated
+            visible_when=lambda: current_user and current_user.is_authenticated,
         )
 
     return app_blueprint

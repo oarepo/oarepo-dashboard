@@ -19,11 +19,7 @@ class DashboardRequestsUIResourceConfig(RecordsUIResourceConfig):
     }
 
     routes = {
-        "create": "/dummy-route",
-        "edit": "/dummy-route",
         "search": "/",
-        "detail": "/dummy-route",
-        "export": "/dummy-route",
     }
     api_service = "requests"
 
