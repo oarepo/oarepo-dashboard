@@ -32,6 +32,7 @@ export function RequestsResultsItemTemplateDashboard({ result }) {
     ComputerTabletRequestsListItem
   );
   const MobileRequestsItemWithState = withState(MobileRequestsListItem);
+  // TODO: remove docs dependency
   const detailPageUrl = `/docs/${result?.topic?.reference?.documents}`;
   return (
     <>

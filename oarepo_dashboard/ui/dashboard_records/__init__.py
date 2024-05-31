@@ -1,8 +1,14 @@
-from oarepo_ui.resources.resource import RecordsUIResource
 from flask_menu import current_menu
 from flask_login import current_user
 from oarepo_runtime.i18n import lazy_gettext as _
-from oarepo_global_search.ui.config import GlobalSearchUIResourceConfig
+from oarepo_global_search.ui.config import (
+    GlobalSearchUIResourceConfig,
+    GlobalSearchUIResource,
+)
+from oarepo_ui.resources import PermissionsComponent
+from oarepo_dashboard.ui.dashboard_components.search import (
+    DashboardRecordsSearchComponent,
+)
 
 
 class DashboardRecordsUIResourceConfig(GlobalSearchUIResourceConfig):
@@ -19,11 +25,13 @@ class DashboardRecordsUIResourceConfig(GlobalSearchUIResourceConfig):
     }
     api_service = "records"
 
+    components = [DashboardRecordsSearchComponent, PermissionsComponent]
+
     def search_endpoint_url(self, identity, api_config, overrides={}, **kwargs):
         return f"/api/user/search"
 
 
-class DashboardRecordsUIResource(RecordsUIResource):
+class DashboardRecordsUIResource(GlobalSearchUIResource):
     pass
 
 

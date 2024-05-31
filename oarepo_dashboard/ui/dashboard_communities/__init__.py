@@ -13,7 +13,7 @@ class DashboardCommunitiesUIResourceConfig(RecordsUIResourceConfig):
     application_id = "communities_dashboard"
     templates = {
         "search": "DashboardCommunitiesPage",
-    }
+    }   
 
     routes = {
         "search": "/",
