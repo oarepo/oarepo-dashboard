@@ -55,7 +55,7 @@ def create_blueprint(app):
         main_menu_dashboard = current_menu.submenu("main.dashboard")
         main_menu_dashboard.register(
             "records_dashboard.search",
-            _("Dashboard"),
+            _("User Dashboard"),
             order=1,
             visible_when=lambda: current_user and current_user.is_authenticated,
         )
