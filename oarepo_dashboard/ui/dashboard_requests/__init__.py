@@ -19,20 +19,14 @@ class DashboardRequestsUIResourceConfig(RecordsUIResourceConfig):
     }
 
     routes = {
-        "create": "/dummy-route",
-        "edit": "/dummy-route",
         "search": "/",
-        "detail": "/dummy-route",
-        "export": "/dummy-route",
     }
     api_service = "requests"
 
-    components = [
-        DashboardRequestsSearchComponent,
-    ]
+    components = [DashboardRequestsSearchComponent]
 
     def search_endpoint_url(self, identity, api_config, overrides={}, **kwargs):
-        return "/api/requests/"
+        return "/api/user/requests"
 
 
 class DashboardRequestsUIResource(RecordsUIResource):

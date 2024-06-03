@@ -108,10 +108,6 @@ msgstr "Hledat v mých žádostech..."
 msgid "Opened by"
 msgstr "Otevřeno {{relativeTime}} uživatelem"
 
-#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/__init__.py:185
-msgid "Dashboard"
-msgstr "Přehled"
-
 msgid "Create new draft"
 msgstr "Vytvořit nový koncept"
 
@@ -129,3 +125,11 @@ msgstr "Otevřeno uživatelem {{creatorName}} na {{created}}."
 
 msgid "Recepient: {{receiver}}."
 msgstr "Příjemce: {{receiver}}"
+
+#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/dashboard_records/__init__.py:58
+msgid "Dashboard"
+msgstr ""
+
+#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/dashboard_records/__init__.py:58
+msgid "User Dashboard"
+msgstr "Nástěnka"

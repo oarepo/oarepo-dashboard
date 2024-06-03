@@ -138,3 +138,7 @@ msgstr ""
 
 msgid "Recepient: {{receiver}}."
 msgstr ""
+
+#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/dashboard_records/__init__.py:58
+msgid "User Dashboard"
+msgstr "Dashboard"

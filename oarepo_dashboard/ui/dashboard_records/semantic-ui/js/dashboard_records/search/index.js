@@ -12,27 +12,15 @@ import {
   SearchappSearchbarElement,
   DynamicResultsListItem,
 } from "@js/oarepo_ui";
+import PropTypes from "prop-types";
 
-const [{ overridableIdPrefix }] = parseSearchAppConfigs();
-
-// TODO: currently, we don't support multiple models, so create new
-// can be just a regular button, not a dropdown with options
-// to be revisited
-// const schemesList = [
-//   {
-//     key: "docs",
-//     text: <a href="/docs/_new">New doc</a>,
-//     value: "docs",
-//     // major hack for first item in dropdown being automatically highlighted :0
-//     selected: false,
-//     active: false,
-//   },
-//   {
-//     key: "communities",
-//     text: <a href="/communities/new">New comm</a>,
-//     value: "communities",
-//   },
-// ];
+const [
+  {
+    overridableIdPrefix,
+    dashboardRecordsCreateUrl,
+    permissions: { can_create },
+  },
+] = parseSearchAppConfigs();
 
 const UserDashboardSearchAppResultViewWAppName = parametrize(
   UserDashboardSearchAppResultView,
@@ -41,31 +29,37 @@ const UserDashboardSearchAppResultViewWAppName = parametrize(
   }
 );
 
-const ExtraContent = () => (
-  <Grid.Column textAlign="right">
-    <Button
-      as="a"
-      href="/docs/_new"
-      type="button"
-      labelPosition="left"
-      icon="plus"
-      content={i18next.t("Create new draft")}
-      primary
-    />
-    {/* <Dropdown
-      button
-      className="icon primary tiny"
-      placeholder="Choose an option"
-      labeled
-      icon="plus"
-      options={[]}
-      text={i18next.t("Create new...")}
-    /> */}
-  </Grid.Column>
-);
+const CreateNewDraftButton = ({ dashboardRecordsCreateUrl }) => {
+  !dashboardRecordsCreateUrl &&
+    console.error(
+      "DASHBOARD_RECORD_CREATE_URL was not provided in invenio.cfg"
+    );
+  return (
+    can_create && (
+      <Grid.Column textAlign="right">
+        <Button
+          as="a"
+          href={dashboardRecordsCreateUrl}
+          type="button"
+          labelPosition="left"
+          icon="plus"
+          content={i18next.t("Create new draft")}
+          primary
+        />
+      </Grid.Column>
+    )
+  );
+};
+
+CreateNewDraftButton.propTypes = {
+  dashboardRecordsCreateUrl: PropTypes.string,
+};
+
 export const DashboardUploadsSearchLayout = UserDashboardSearchAppLayoutHOC({
   placeholder: i18next.t("Search in my uploads..."),
-  extraContent: ExtraContent,
+  extraContent: parametrize(CreateNewDraftButton, {
+    dashboardRecordsCreateUrl: dashboardRecordsCreateUrl,
+  }),
   appName: overridableIdPrefix,
 });
 export const componentOverrides = {

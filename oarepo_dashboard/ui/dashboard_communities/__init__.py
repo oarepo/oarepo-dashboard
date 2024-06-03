@@ -13,14 +13,10 @@ class DashboardCommunitiesUIResourceConfig(RecordsUIResourceConfig):
     application_id = "communities_dashboard"
     templates = {
         "search": "DashboardCommunitiesPage",
-    }
+    }   
 
     routes = {
-        "create": "/dummy-route",
-        "edit": "/dummy-route",
         "search": "/",
-        "detail": "/dummy-route",
-        "export": "/dummy-route",
     }
     api_service = "communities"
 
