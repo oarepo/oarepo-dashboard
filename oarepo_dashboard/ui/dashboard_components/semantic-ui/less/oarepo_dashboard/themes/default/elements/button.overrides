@@ -4,5 +4,6 @@
       cursor: default;
     }
     font-size: @mini;
+    padding: 0.5rem;
   }
 }
