@@ -43,23 +43,18 @@ export const UserDashboardSearchAppLayoutHOC = ({
         <Container className="rel-mt-4 rel-mb-4">
           <Grid>
             <GridResponsiveSidebarColumn
-              width={3}
+              width={4}
               open={sidebarVisible}
               onHideClick={() => setSidebarVisible(false)}
             >
               <SearchAppFacets aggs={config.aggs} appName={appName} />
             </GridResponsiveSidebarColumn>
-            <Grid.Column computer={13} mobile={16} tablet={16}>
+            <Grid.Column computer={12} mobile={16} tablet={16}>
               <Grid columns="equal">
                 <ShouldActiveFiltersRender>
                   <Grid.Row only="computer" verticalAlign="middle">
                     <Grid.Column>
                       <ActiveFilters />
-                      <Overridable
-                        id={buildUID("ClearFiltersButton.container")}
-                      >
-                        <ClearFiltersButton />
-                      </Overridable>
                     </Grid.Column>
                   </Grid.Row>
                 </ShouldActiveFiltersRender>
@@ -96,15 +91,13 @@ export const UserDashboardSearchAppLayoutHOC = ({
                   </Grid.Row>
                 )}
                 <ShouldActiveFiltersRender>
-                  <Grid.Row only="mobile tablet">
-                    <Grid.Column>
-                      <Overridable
-                        id={buildUID("ClearFiltersButton.container")}
-                      >
+                  <Overridable id={buildUID("ClearFiltersButton.container")}>
+                    <Grid.Row only="mobile tablet">
+                      <Grid.Column>
                         <ClearFiltersButton />
-                      </Overridable>
-                    </Grid.Column>
-                  </Grid.Row>
+                      </Grid.Column>
+                    </Grid.Row>
+                  </Overridable>
                 </ShouldActiveFiltersRender>
                 <Grid.Row>
                   <Grid.Column mobile={16} tablet={16} computer={16}>

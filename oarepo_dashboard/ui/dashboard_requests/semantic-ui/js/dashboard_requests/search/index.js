@@ -7,6 +7,7 @@ import {
   SearchappSearchbarElement,
   ActiveFiltersElement,
   ClearFiltersButton,
+  ShouldActiveFiltersRender,
 } from "@js/oarepo_ui";
 import { withState } from "react-searchkit";
 import {
@@ -64,6 +65,11 @@ export const FacetButtons = () => (
     <Grid.Column only="mobile tablet" textAlign="left">
       <RequestStatusFilter keepFiltersOnUpdate />
     </Grid.Column>
+    <ShouldActiveFiltersRender>
+      <Grid.Column only="mobile tablet" textAlign="center">
+        <ClearFiltersButtonWIgnoredFilters />
+      </Grid.Column>
+    </ShouldActiveFiltersRender>
     <Grid.Column only="mobile tablet" textAlign="right">
       <FacetsButtonGroupNameToggler
         basic
@@ -101,8 +107,7 @@ export const componentOverrides = {
     RequestsResultsItemTemplateDashboard,
   [`${overridableIdPrefix}.ActiveFilters.element`]:
     ActiveFiltersElementWIgnoredFilters,
-  [`${overridableIdPrefix}.ClearFiltersButton.container`]:
-    ClearFiltersButtonWIgnoredFilters,
+  [`${overridableIdPrefix}.ClearFiltersButton.container`]: () => null,
   [`${overridableIdPrefix}.SearchApp.results`]:
     UserDashboardSearchAppResultViewWAppName,
   [`${overridableIdPrefix}.SearchBar.element`]: SearchappSearchbarElement,
