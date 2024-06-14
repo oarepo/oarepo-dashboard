@@ -7,7 +7,6 @@ import {
   SearchappSearchbarElement,
   ActiveFiltersElement,
   ClearFiltersButton,
-  ShouldActiveFiltersRender,
 } from "@js/oarepo_ui";
 import { withState } from "react-searchkit";
 import {
@@ -65,11 +64,6 @@ export const FacetButtons = () => (
     <Grid.Column only="mobile tablet" textAlign="left">
       <RequestStatusFilter keepFiltersOnUpdate />
     </Grid.Column>
-    <ShouldActiveFiltersRender>
-      <Grid.Column only="mobile tablet" textAlign="center">
-        <ClearFiltersButtonWIgnoredFilters />
-      </Grid.Column>
-    </ShouldActiveFiltersRender>
     <Grid.Column only="mobile tablet" textAlign="right">
       <FacetsButtonGroupNameToggler
         basic
@@ -112,6 +106,9 @@ export const componentOverrides = {
     UserDashboardSearchAppResultViewWAppName,
   [`${overridableIdPrefix}.SearchBar.element`]: SearchappSearchbarElement,
   [`${overridableIdPrefix}.SearchApp.layout`]: DashboardUploadsSearchLayout,
+  [`${overridableIdPrefix}.ClearFiltersButton.container`]:
+    ClearFiltersButtonWIgnoredFilters,
+
   // from invenio requests in case we have some overlapping request types
   ...defaultContribComponents,
   // our request type specific components (icons, labels, etc.)
