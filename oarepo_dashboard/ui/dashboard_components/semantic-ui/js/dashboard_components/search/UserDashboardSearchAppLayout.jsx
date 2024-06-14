@@ -21,7 +21,7 @@ import {
   SearchAppFacets,
   ClearFiltersButton,
   ShouldActiveFiltersRender,
-  ActiveFiltersCountLabel,
+  ActiveFiltersCountFloatingLabel,
 } from "@js/oarepo_ui";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Overridable from "react-overridable";
@@ -82,7 +82,7 @@ export const UserDashboardSearchAppLayoutHOC = ({
                   >
                     <Icon name="filter"></Icon>
                     <ShouldActiveFiltersRender>
-                      <ActiveFiltersCountLabel />
+                      <ActiveFiltersCountFloatingLabel />
                     </ShouldActiveFiltersRender>
                   </Button>
                 </Grid.Column>
