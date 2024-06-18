@@ -11,8 +11,6 @@ import {
   parseSearchAppConfigs,
   SearchappSearchbarElement,
   DynamicResultsListItem,
-  ClearFiltersButton,
-  ShouldActiveFiltersRender,
 } from "@js/oarepo_ui";
 import PropTypes from "prop-types";
 
@@ -38,24 +36,17 @@ const CreateNewDraftButton = ({ dashboardRecordsCreateUrl }) => {
     );
   return (
     can_create && (
-      <React.Fragment>
-        <Grid.Column only="mobile tablet">
-          <ShouldActiveFiltersRender>
-            <ClearFiltersButton />
-          </ShouldActiveFiltersRender>
-        </Grid.Column>
-        <Grid.Column textAlign="right">
-          <Button
-            as="a"
-            href={dashboardRecordsCreateUrl}
-            type="button"
-            labelPosition="left"
-            icon="plus"
-            content={i18next.t("Create new draft")}
-            primary
-          />
-        </Grid.Column>
-      </React.Fragment>
+      <Grid.Column textAlign="right">
+        <Button
+          as="a"
+          href={dashboardRecordsCreateUrl}
+          type="button"
+          labelPosition="left"
+          icon="plus"
+          content={i18next.t("Create new draft")}
+          primary
+        />
+      </Grid.Column>
     )
   );
 };
@@ -78,7 +69,6 @@ export const componentOverrides = {
   [`${overridableIdPrefix}.SearchApp.results`]:
     UserDashboardSearchAppResultViewWAppName,
   [`${overridableIdPrefix}.SearchApp.layout`]: DashboardUploadsSearchLayout,
-  [`${overridableIdPrefix}.ClearFiltersButton.container`]: () => null,
 };
 
 createSearchAppsInit({ componentOverrides });

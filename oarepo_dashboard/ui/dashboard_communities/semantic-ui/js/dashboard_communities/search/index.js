@@ -63,7 +63,6 @@ export const componentOverrides = {
   [`${overridableIdPrefix}.EmptyResults.element`]:
     CommunitiesEmptySearchResults,
   [`${overridableIdPrefix}.ResultsList.item`]: UserDashboardCommunitiesListItem,
-  // [`${overridableIdPrefix}.SearchApp.facets`]: ContribSearchAppFacetsWithConfig,
   [`${overridableIdPrefix}.SearchApp.results`]:
     UserDashboardSearchAppResultViewWAppName,
   [`${overridableIdPrefix}.SearchBar.element`]: SearchappSearchbarElement,

@@ -15,12 +15,13 @@ import { i18next } from "@translations/oarepo_dashboard";
 import React, { useContext } from "react";
 import { SearchBar, ActiveFilters } from "react-searchkit";
 import { GridResponsiveSidebarColumn } from "react-invenio-forms";
-import { Grid, Button, Container } from "semantic-ui-react";
+import { Grid, Button, Container, Icon } from "semantic-ui-react";
 import PropTypes from "prop-types";
 import {
   SearchAppFacets,
   ClearFiltersButton,
   ShouldActiveFiltersRender,
+  ActiveFiltersCountFloatingLabel,
 } from "@js/oarepo_ui";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Overridable from "react-overridable";
@@ -47,6 +48,13 @@ export const UserDashboardSearchAppLayoutHOC = ({
               open={sidebarVisible}
               onHideClick={() => setSidebarVisible(false)}
             >
+              <ShouldActiveFiltersRender>
+                <Overridable id={buildUID("ClearFiltersButton.container")}>
+                  <ClearFiltersButton
+                    className={"clear-filters-button mobile tablet only"}
+                  />
+                </Overridable>
+              </ShouldActiveFiltersRender>
               <SearchAppFacets aggs={config.aggs} appName={appName} />
             </GridResponsiveSidebarColumn>
             <Grid.Column computer={12} mobile={16} tablet={16}>
@@ -67,10 +75,16 @@ export const UserDashboardSearchAppLayoutHOC = ({
                 <Grid.Column only="mobile tablet" mobile={2} tablet={2}>
                   <Button
                     basic
-                    icon="sliders"
                     onClick={() => setSidebarVisible(true)}
+                    title={i18next.t("Filter results")}
                     aria-label={i18next.t("Filter results")}
-                  />
+                    className="facets-sidebar-open-button"
+                  >
+                    <Icon name="filter"></Icon>
+                    <ShouldActiveFiltersRender>
+                      <ActiveFiltersCountFloatingLabel />
+                    </ShouldActiveFiltersRender>
+                  </Button>
                 </Grid.Column>
                 <Grid.Column
                   only="mobile tablet"
@@ -90,15 +104,6 @@ export const UserDashboardSearchAppLayoutHOC = ({
                     {mobileOnlyExtraRow()}
                   </Grid.Row>
                 )}
-                <ShouldActiveFiltersRender>
-                  <Overridable id={buildUID("ClearFiltersButton.container")}>
-                    <Grid.Row only="mobile tablet">
-                      <Grid.Column>
-                        <ClearFiltersButton />
-                      </Grid.Column>
-                    </Grid.Row>
-                  </Overridable>
-                </ShouldActiveFiltersRender>
                 <Grid.Row>
                   <Grid.Column mobile={16} tablet={16} computer={16}>
                     <SearchAppResultsPane
