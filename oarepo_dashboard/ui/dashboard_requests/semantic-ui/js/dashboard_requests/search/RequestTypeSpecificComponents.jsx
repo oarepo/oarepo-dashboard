@@ -10,13 +10,12 @@ import {
 } from "./icons/TypeIcons";
 
 export const requestTypeSpecificComponents = {
-  [`RequestTypeLabel.layout.documents_edit_record`]: LabelTypeEditRecord,
-  [`RequestTypeLabel.layout.documents_delete_record`]: LabelTypeDeleteRecord,
-  [`RequestTypeLabel.layout.documents_publish_draft`]: LabelTypePublishRecord,
-  [`InvenioRequests.RequestTypeIcon.layout.documents_edit_record`]:
+  [`RequestTypeLabel.layout.edit-published-record`]: LabelTypeEditRecord,
+  [`RequestTypeLabel.layout.delete-published-record`]: LabelTypeDeleteRecord,
+  [`RequestTypeLabel.layout.publish-draft`]: LabelTypePublishRecord,
+  [`InvenioRequests.RequestTypeIcon.layout.edit-published-record`]:
     EditRecordIcon,
-  [`InvenioRequests.RequestTypeIcon.layout.documents_delete_record`]:
+  [`InvenioRequests.RequestTypeIcon.layout.delete-published-record`]:
     DeleteRecordIcon,
-  [`InvenioRequests.RequestTypeIcon.layout.documents_publish_draft`]:
-    PublishRecordIcon,
+  [`InvenioRequests.RequestTypeIcon.layout.publish-draft`]: PublishRecordIcon,
 };

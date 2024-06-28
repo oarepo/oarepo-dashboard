@@ -7,6 +7,7 @@ import {
   SearchappSearchbarElement,
   ActiveFiltersElement,
   ClearFiltersButton,
+  DynamicResultsListItem,
 } from "@js/oarepo_ui";
 import { withState } from "react-searchkit";
 import {
@@ -93,11 +94,15 @@ export const DashboardUploadsSearchLayout = UserDashboardSearchAppLayoutHOC({
   extraContent: FacetButtons,
   appName: overridableIdPrefix,
 });
+
+const DynamicRequestListItem = parametrize(DynamicResultsListItem, {
+  FallbackComponent: RequestsResultsItemTemplateDashboard,
+  selector: "type",
+});
 export const componentOverrides = {
   [`${overridableIdPrefix}.EmptyResults.element`]:
     RequestsEmptyResultsWithState,
-  [`${overridableIdPrefix}.ResultsList.item`]:
-    RequestsResultsItemTemplateDashboard,
+  [`${overridableIdPrefix}.ResultsList.item`]: DynamicRequestListItem,
   [`${overridableIdPrefix}.ActiveFilters.element`]:
     ActiveFiltersElementWIgnoredFilters,
   [`${overridableIdPrefix}.ClearFiltersButton.container`]: () => null,

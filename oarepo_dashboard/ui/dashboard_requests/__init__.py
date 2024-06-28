@@ -7,6 +7,7 @@ from oarepo_runtime.i18n import lazy_gettext as _
 from oarepo_dashboard.ui.dashboard_components.search import (
     DashboardRequestsSearchComponent,
 )
+from flask import current_app
 
 
 class DashboardRequestsUIResourceConfig(RecordsUIResourceConfig):
@@ -27,6 +28,13 @@ class DashboardRequestsUIResourceConfig(RecordsUIResourceConfig):
 
     def search_endpoint_url(self, identity, api_config, overrides={}, **kwargs):
         return "/api/user/requests"
+
+    @property
+    def default_components(self):
+        requests_result_list_items = current_app.config.get(
+            "REQUESTS_RESULT_LIST_ITEMS", {}
+        )
+        return requests_result_list_items
 
 
 class DashboardRequestsUIResource(RecordsUIResource):
