@@ -26,6 +26,9 @@ class DashboardRequestsUIResourceConfig(RecordsUIResourceConfig):
 
     components = [DashboardRequestsSearchComponent]
 
+    # object where we can store default result list items for various requests types
+    default_results_list_items = {}
+
     def search_endpoint_url(self, identity, api_config, overrides={}, **kwargs):
         return "/api/user/requests"
 
@@ -34,7 +37,8 @@ class DashboardRequestsUIResourceConfig(RecordsUIResourceConfig):
         requests_result_list_items = current_app.config.get(
             "REQUESTS_RESULT_LIST_ITEMS", {}
         )
-        return requests_result_list_items
+        # make it possible to override these components from invenio.cfg
+        return {**self.default_results_list_items, **requests_result_list_items}
 
 
 class DashboardRequestsUIResource(RecordsUIResource):
