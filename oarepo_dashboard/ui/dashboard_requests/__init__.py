@@ -7,6 +7,8 @@ from oarepo_runtime.i18n import lazy_gettext as _
 from oarepo_dashboard.ui.dashboard_components.search import (
     DashboardRequestsSearchComponent,
 )
+from flask import current_app
+from flask_security import login_required
 
 
 class DashboardRequestsUIResourceConfig(RecordsUIResourceConfig):
@@ -25,12 +27,25 @@ class DashboardRequestsUIResourceConfig(RecordsUIResourceConfig):
 
     components = [DashboardRequestsSearchComponent]
 
+    # object where we can store default result list items for various requests types
+    default_results_list_items = {}
+
     def search_endpoint_url(self, identity, api_config, overrides={}, **kwargs):
         return "/api/user/requests"
 
+    @property
+    def default_components(self):
+        requests_result_list_items = current_app.config.get(
+            "REQUESTS_RESULT_LIST_ITEMS", {}
+        )
+        # make it possible to override these components from invenio.cfg
+        return {**self.default_results_list_items, **requests_result_list_items}
+
 
 class DashboardRequestsUIResource(RecordsUIResource):
-    pass
+    @login_required
+    def search(self):
+        return super().search()
 
 
 def create_blueprint(app):
