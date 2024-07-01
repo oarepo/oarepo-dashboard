@@ -8,6 +8,7 @@ from oarepo_dashboard.ui.dashboard_components.search import (
     DashboardRequestsSearchComponent,
 )
 from flask import current_app
+from flask_security import login_required
 
 
 class DashboardRequestsUIResourceConfig(RecordsUIResourceConfig):
@@ -42,7 +43,9 @@ class DashboardRequestsUIResourceConfig(RecordsUIResourceConfig):
 
 
 class DashboardRequestsUIResource(RecordsUIResource):
-    pass
+    @login_required
+    def search(self):
+        return super().search()
 
 
 def create_blueprint(app):

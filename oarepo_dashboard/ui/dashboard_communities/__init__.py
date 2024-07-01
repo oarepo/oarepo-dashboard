@@ -4,6 +4,7 @@ from oarepo_ui.resources.config import (
 from oarepo_ui.resources.resource import RecordsUIResource
 from flask_menu import current_menu
 from oarepo_runtime.i18n import lazy_gettext as _
+from flask_security import login_required
 
 
 class DashboardCommunitiesUIResourceConfig(RecordsUIResourceConfig):
@@ -13,7 +14,7 @@ class DashboardCommunitiesUIResourceConfig(RecordsUIResourceConfig):
     application_id = "communities_dashboard"
     templates = {
         "search": "DashboardCommunitiesPage",
-    }   
+    }
 
     routes = {
         "search": "/",
@@ -25,7 +26,9 @@ class DashboardCommunitiesUIResourceConfig(RecordsUIResourceConfig):
 
 
 class DashboardCommunitiesUIResource(RecordsUIResource):
-    pass
+    @login_required
+    def search(self):
+        return super().search()
 
 
 def create_blueprint(app):
