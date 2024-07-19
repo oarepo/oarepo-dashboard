@@ -1,5 +1,5 @@
 from flask_menu import current_menu
-from flask_login import current_user
+from flask_login import current_user, login_required
 from oarepo_runtime.i18n import lazy_gettext as _
 from oarepo_global_search.ui.config import (
     GlobalSearchUIResourceConfig,
@@ -32,7 +32,10 @@ class DashboardRecordsUIResourceConfig(GlobalSearchUIResourceConfig):
 
 
 class DashboardRecordsUIResource(GlobalSearchUIResource):
-    pass
+
+    decorators = [
+        login_required,
+    ]
 
 
 def create_blueprint(app):
