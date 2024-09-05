@@ -76,12 +76,14 @@ jobs:
           .venv/bin/pip freeze > requirements.txt
 
       - name: Archive production artifacts
+        if: inputs.oarepo == '11'
         uses: actions/upload-artifact@v4
         with:
           name: dist
           path: dist
 
       - name: Archive production artifacts
+        if: inputs.oarepo == '11'
         uses: actions/upload-artifact@v4
         with:
           name: requirements.txt
