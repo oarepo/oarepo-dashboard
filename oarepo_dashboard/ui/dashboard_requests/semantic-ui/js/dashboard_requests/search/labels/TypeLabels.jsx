@@ -19,3 +19,9 @@ export const LabelTypePublishRecord = (props) => (
     {i18next.t("Publish record")}
   </Label>
 );
+
+export const LabelTypeRecordNewVersion = (props) => (
+  <Label horizontal size="small">
+    {i18next.t("Create new version of record")}
+  </Label>
+);

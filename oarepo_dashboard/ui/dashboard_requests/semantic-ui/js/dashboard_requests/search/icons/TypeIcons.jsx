@@ -10,3 +10,7 @@ export const DeleteRecordIcon = () => (
 export const PublishRecordIcon = () => (
   <Icon name="upload" className="neutral" />
 );
+
+export const RecordNewVersionIcon = () => (
+  <Icon name="plus" className="neutral" />
+);
