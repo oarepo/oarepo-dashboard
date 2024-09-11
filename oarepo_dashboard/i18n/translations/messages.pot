@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-06-01 21:05+0200\n"
+"POT-Creation-Date: 2024-09-10 10:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,19 +17,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.10.3\n"
 
-#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/dashboard_communities/__init__.py:42
+#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/dashboard_communities/__init__.py:46
 msgid "Communities"
 msgstr ""
 
-#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/dashboard_records/__init__.py:49
+#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/dashboard_records/__init__.py:52
 msgid "Records"
 msgstr ""
 
-#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/dashboard_records/__init__.py:58
+#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/dashboard_records/__init__.py:61
 msgid "User Dashboard"
 msgstr ""
 
-#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/dashboard_requests/__init__.py:47
+#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/dashboard_requests/__init__.py:50
 msgid "Requests"
 msgstr ""
 
@@ -79,4 +79,7 @@ msgid "Delete record"
 msgstr ""
 
 msgid "Publish record"
+msgstr ""
+
+msgid "Create new version of record"
 msgstr ""
