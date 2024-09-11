@@ -2,7 +2,7 @@ i18n:
   babel_output_translations: oarepo_dashboard/i18n/translations
   babel_source_paths:
     - oarepo_dashboard/ui
-  i18next_output_translations: oarepo_dashboard/i18n/semantic-ui/translations
+  i18next_output_translations: oarepo_dashboard/i18n/semantic-ui/translations/oarepo_dashboard
   i18next_source_paths:
     - oarepo_dashboard/ui
   languages:
