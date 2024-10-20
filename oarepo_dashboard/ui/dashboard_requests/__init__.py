@@ -27,7 +27,7 @@ class DashboardRequestsUIResourceConfig(RecordsUIResourceConfig):
     components = [DashboardRequestsSearchComponent]
 
     def search_endpoint_url(self, identity, api_config, overrides={}, **kwargs):
-        return "/api/user/requests"
+        return "/api/requests"
 
 
 class DashboardRequestsUIResource(RecordsUIResource):

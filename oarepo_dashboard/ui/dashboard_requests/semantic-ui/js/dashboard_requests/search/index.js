@@ -50,7 +50,13 @@ RequestsResultsItemTemplateDashboard.propTypes = {
 export const FacetButtons = () => (
   <React.Fragment>
     <Grid.Column only="computer" textAlign="right">
-      <RequestStatusFilter keepFiltersOnUpdate />
+      <FacetsButtonGroupNameToggler
+        basic
+        toggledFilters={[
+          { text: i18next.t("Open"), filterName: "is_open" },
+          { text: i18next.t("Closed"), filterName: "is_closed" },
+        ]}
+      />
       <span className="rel-ml-2"></span>
       <FacetsButtonGroupNameToggler
         basic
@@ -61,7 +67,13 @@ export const FacetButtons = () => (
       />
     </Grid.Column>
     <Grid.Column only="mobile tablet" textAlign="left">
-      <RequestStatusFilter keepFiltersOnUpdate />
+      <FacetsButtonGroupNameToggler
+        basic
+        toggledFilters={[
+          { text: i18next.t("Open"), filterName: "is_open" },
+          { text: i18next.t("Closed"), filterName: "is_closed" },
+        ]}
+      />
     </Grid.Column>
     <Grid.Column only="mobile tablet" textAlign="right">
       <FacetsButtonGroupNameToggler
@@ -83,10 +95,10 @@ const UserDashboardSearchAppResultViewWAppName = parametrize(
 );
 
 const ActiveFiltersElementWIgnoredFilters = parametrize(ActiveFiltersElement, {
-  ignoredFilters: ["mine", "assigned"],
+  ignoredFilters: ["mine", "assigned", "is_closed"],
 });
 const ClearFiltersButtonWIgnoredFilters = parametrize(ClearFiltersButton, {
-  ignoredFilters: ["mine", "assigned"],
+  ignoredFilters: ["mine", "assigned", "is_closed"],
 });
 export const DashboardUploadsSearchLayout = UserDashboardSearchAppLayoutHOC({
   placeholder: i18next.t("Search in my requests..."),
