@@ -9,10 +9,7 @@ import {
   ClearFiltersButton,
 } from "@js/oarepo_ui";
 import { withState } from "react-searchkit";
-import {
-  RequestsEmptyResultsWithState,
-  RequestStatusFilter,
-} from "@js/invenio_requests/search";
+import { RequestsEmptyResultsWithState } from "@js/invenio_requests/search";
 import { defaultContribComponents } from "@js/invenio_requests/contrib";
 import { PropTypes } from "prop-types";
 import {
