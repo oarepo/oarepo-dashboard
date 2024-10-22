@@ -3,14 +3,12 @@ import { Grid, Button } from "semantic-ui-react";
 import { parametrize } from "react-overridable";
 import { i18next } from "@translations/oarepo_dashboard";
 import {
-  UserDashboardSearchAppLayoutHOC,
-  UserDashboardSearchAppResultView,
-} from "@js/dashboard_components";
-import {
   createSearchAppsInit,
   parseSearchAppConfigs,
   SearchappSearchbarElement,
   DynamicResultsListItem,
+  SearchAppLayoutWithSearchbarHOC,
+  SearchAppResultViewWithSearchbar,
 } from "@js/oarepo_ui";
 import PropTypes from "prop-types";
 
@@ -22,8 +20,8 @@ const [
   },
 ] = parseSearchAppConfigs();
 
-const UserDashboardSearchAppResultViewWAppName = parametrize(
-  UserDashboardSearchAppResultView,
+const SearchAppResultViewWithSearchbarWAppName = parametrize(
+  SearchAppResultViewWithSearchbar,
   {
     appName: overridableIdPrefix,
   }
@@ -55,7 +53,7 @@ CreateNewDraftButton.propTypes = {
   dashboardRecordsCreateUrl: PropTypes.string,
 };
 
-export const DashboardUploadsSearchLayout = UserDashboardSearchAppLayoutHOC({
+export const DashboardUploadsSearchLayout = SearchAppLayoutWithSearchbarHOC({
   placeholder: i18next.t("Search in my uploads..."),
   extraContent: parametrize(CreateNewDraftButton, {
     dashboardRecordsCreateUrl: dashboardRecordsCreateUrl,
@@ -67,7 +65,7 @@ export const componentOverrides = {
   [`${overridableIdPrefix}.SearchBar.element`]: SearchappSearchbarElement,
   // [`${overridableIdPrefix}.SearchApp.facets`]: ContribSearchAppFacetsWithConfig,
   [`${overridableIdPrefix}.SearchApp.results`]:
-    UserDashboardSearchAppResultViewWAppName,
+    SearchAppResultViewWithSearchbarWAppName,
   [`${overridableIdPrefix}.SearchApp.layout`]: DashboardUploadsSearchLayout,
 };
 
