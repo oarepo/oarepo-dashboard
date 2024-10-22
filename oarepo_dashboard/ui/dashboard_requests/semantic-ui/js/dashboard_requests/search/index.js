@@ -7,16 +7,14 @@ import {
   SearchappSearchbarElement,
   ActiveFiltersElement,
   ClearFiltersButton,
+  SearchAppLayoutWithSearchbarHOC,
+  SearchAppResultViewWithSearchbar,
 } from "@js/oarepo_ui";
 import { withState } from "react-searchkit";
 import { RequestsEmptyResultsWithState } from "@js/invenio_requests/search";
 import { defaultContribComponents } from "@js/invenio_requests/contrib";
 import { PropTypes } from "prop-types";
-import {
-  UserDashboardSearchAppLayoutHOC,
-  UserDashboardSearchAppResultView,
-  FacetsButtonGroupNameToggler,
-} from "@js/dashboard_components";
+import { FacetsButtonGroupNameToggler } from "@js/dashboard_components";
 import { i18next } from "@translations/oarepo_dashboard";
 import { ComputerTabletRequestsListItem } from "./ComputerTabletRequestsListItem";
 import { MobileRequestsListItem } from "./MobileRequestsListItem";
@@ -84,8 +82,8 @@ export const FacetButtons = () => (
   </React.Fragment>
 );
 
-const UserDashboardSearchAppResultViewWAppName = parametrize(
-  UserDashboardSearchAppResultView,
+const SearchAppResultViewWithSearchbarWAppName = parametrize(
+  SearchAppResultViewWithSearchbar,
   {
     appName: overridableIdPrefix,
   }
@@ -97,7 +95,7 @@ const ActiveFiltersElementWIgnoredFilters = parametrize(ActiveFiltersElement, {
 const ClearFiltersButtonWIgnoredFilters = parametrize(ClearFiltersButton, {
   ignoredFilters: ["mine", "assigned", "is_closed"],
 });
-export const DashboardUploadsSearchLayout = UserDashboardSearchAppLayoutHOC({
+export const DashboardUploadsSearchLayout = SearchAppLayoutWithSearchbarHOC({
   placeholder: i18next.t("Search in my requests..."),
   extraContent: FacetButtons,
   appName: overridableIdPrefix,
@@ -111,7 +109,7 @@ export const componentOverrides = {
     ActiveFiltersElementWIgnoredFilters,
   [`${overridableIdPrefix}.ClearFiltersButton.container`]: () => null,
   [`${overridableIdPrefix}.SearchApp.results`]:
-    UserDashboardSearchAppResultViewWAppName,
+    SearchAppResultViewWithSearchbarWAppName,
   [`${overridableIdPrefix}.SearchBar.element`]: SearchappSearchbarElement,
   [`${overridableIdPrefix}.SearchApp.layout`]: DashboardUploadsSearchLayout,
   [`${overridableIdPrefix}.ClearFiltersButton.container`]:

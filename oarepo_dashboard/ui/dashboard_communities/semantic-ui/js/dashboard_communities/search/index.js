@@ -4,17 +4,13 @@ import {
   createSearchAppsInit,
   parseSearchAppConfigs,
   SearchappSearchbarElement,
+  SearchAppLayoutWithSearchbarHOC,
+  SearchAppResultViewWithSearchbar,
 } from "@js/oarepo_ui";
-// TODO: if we wish to import some things from invenio we need to resolve translations
-// in their system
 import { CommunitiesEmptySearchResults } from "@js/invenio_communities/community";
 import PropTypes from "prop-types";
 import { ComputerTabledCommunitiesListItem } from "./ComputerTabletCommunitiesListItem";
 import { MobileCommunitiesListItem } from "./MobileCommunitiesListItem";
-import {
-  UserDashboardSearchAppLayoutHOC,
-  UserDashboardSearchAppResultView,
-} from "@js/dashboard_components";
 import { i18next } from "@translations/oarepo_dashboard";
 
 const [{ overridableIdPrefix }] = parseSearchAppConfigs();
@@ -49,13 +45,13 @@ UserDashboardCommunitiesListItem.defaultProps = {
   communityTypeLabelTransparent: false,
 };
 
-const UserDashboardSearchAppResultViewWAppName = parametrize(
-  UserDashboardSearchAppResultView,
+const SearchAppResultViewWithSearchbarWAppName = parametrize(
+  SearchAppResultViewWithSearchbar,
   {
     appName: overridableIdPrefix,
   }
 );
-export const DashboardUploadsSearchLayout = UserDashboardSearchAppLayoutHOC({
+export const DashboardUploadsSearchLayout = SearchAppLayoutWithSearchbarHOC({
   placeholder: i18next.t("Search in my communities..."),
   appName: overridableIdPrefix,
 });
@@ -64,7 +60,7 @@ export const componentOverrides = {
     CommunitiesEmptySearchResults,
   [`${overridableIdPrefix}.ResultsList.item`]: UserDashboardCommunitiesListItem,
   [`${overridableIdPrefix}.SearchApp.results`]:
-    UserDashboardSearchAppResultViewWAppName,
+    SearchAppResultViewWithSearchbarWAppName,
   [`${overridableIdPrefix}.SearchBar.element`]: SearchappSearchbarElement,
   [`${overridableIdPrefix}.SearchApp.layout`]: DashboardUploadsSearchLayout,
 };
