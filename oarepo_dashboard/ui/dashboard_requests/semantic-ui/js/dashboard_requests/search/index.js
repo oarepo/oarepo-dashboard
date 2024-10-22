@@ -11,10 +11,7 @@ import {
   SearchAppResultViewWithSearchbar,
 } from "@js/oarepo_ui";
 import { withState } from "react-searchkit";
-import {
-  RequestsEmptyResultsWithState,
-  RequestStatusFilter,
-} from "@js/invenio_requests/search";
+import { RequestsEmptyResultsWithState } from "@js/invenio_requests/search";
 import { defaultContribComponents } from "@js/invenio_requests/contrib";
 import { PropTypes } from "prop-types";
 import { FacetsButtonGroupNameToggler } from "@js/dashboard_components";
@@ -48,7 +45,13 @@ RequestsResultsItemTemplateDashboard.propTypes = {
 export const FacetButtons = () => (
   <React.Fragment>
     <Grid.Column only="computer" textAlign="right">
-      <RequestStatusFilter keepFiltersOnUpdate />
+      <FacetsButtonGroupNameToggler
+        basic
+        toggledFilters={[
+          { text: i18next.t("Open"), filterName: "is_open" },
+          { text: i18next.t("Closed"), filterName: "is_closed" },
+        ]}
+      />
       <span className="rel-ml-2"></span>
       <FacetsButtonGroupNameToggler
         basic
@@ -59,7 +62,13 @@ export const FacetButtons = () => (
       />
     </Grid.Column>
     <Grid.Column only="mobile tablet" textAlign="left">
-      <RequestStatusFilter keepFiltersOnUpdate />
+      <FacetsButtonGroupNameToggler
+        basic
+        toggledFilters={[
+          { text: i18next.t("Open"), filterName: "is_open" },
+          { text: i18next.t("Closed"), filterName: "is_closed" },
+        ]}
+      />
     </Grid.Column>
     <Grid.Column only="mobile tablet" textAlign="right">
       <FacetsButtonGroupNameToggler
@@ -81,10 +90,10 @@ const SearchAppResultViewWithSearchbarWAppName = parametrize(
 );
 
 const ActiveFiltersElementWIgnoredFilters = parametrize(ActiveFiltersElement, {
-  ignoredFilters: ["mine", "assigned"],
+  ignoredFilters: ["mine", "assigned", "is_closed"],
 });
 const ClearFiltersButtonWIgnoredFilters = parametrize(ClearFiltersButton, {
-  ignoredFilters: ["mine", "assigned"],
+  ignoredFilters: ["mine", "assigned", "is_closed"],
 });
 export const DashboardUploadsSearchLayout = SearchAppLayoutWithSearchbarHOC({
   placeholder: i18next.t("Search in my requests..."),
