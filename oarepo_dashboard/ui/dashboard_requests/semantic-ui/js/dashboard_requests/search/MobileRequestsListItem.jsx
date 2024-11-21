@@ -58,10 +58,12 @@ export const MobileRequestsListItem = ({
             {i18next.t("Opened by {{creatorName}} on {{created}}.", {
               creatorName: creatorName,
               created: result.created,
+              interpolation: { escapeValue: false },
             })}{" "}
             {result.receiver &&
               i18next.t("Recepient: {{receiver}}.", {
                 receiver: result.receiver.label,
+                interpolation: { escapeValue: false },
               })}
           </small>
           <small className="block rel-mt-1">
