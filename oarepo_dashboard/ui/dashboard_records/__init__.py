@@ -9,6 +9,7 @@ from oarepo_ui.resources import PermissionsComponent
 from oarepo_dashboard.ui.dashboard_components.search import (
     DashboardRecordsSearchComponent,
 )
+from oarepo_ui.resources.components import AllowedHtmlTagsComponent
 
 
 class DashboardRecordsUIResourceConfig(GlobalSearchUIResourceConfig):
@@ -25,14 +26,17 @@ class DashboardRecordsUIResourceConfig(GlobalSearchUIResourceConfig):
     }
     api_service = "records"
 
-    components = [DashboardRecordsSearchComponent, PermissionsComponent]
+    components = [
+        DashboardRecordsSearchComponent,
+        PermissionsComponent,
+        AllowedHtmlTagsComponent,
+    ]
 
     def search_endpoint_url(self, identity, api_config, overrides={}, **kwargs):
         return "/api/user/search"
 
 
 class DashboardRecordsUIResource(GlobalSearchUIResource):
-
     decorators = [
         login_required,
     ]
