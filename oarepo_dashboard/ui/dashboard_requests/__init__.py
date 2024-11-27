@@ -8,6 +8,7 @@ from oarepo_runtime.i18n import lazy_gettext as _
 from oarepo_dashboard.ui.dashboard_components.search import (
     DashboardRequestsSearchComponent,
 )
+from oarepo_ui.resources.components import AllowedHtmlTagsComponent
 
 
 class DashboardRequestsUIResourceConfig(RecordsUIResourceConfig):
@@ -24,7 +25,7 @@ class DashboardRequestsUIResourceConfig(RecordsUIResourceConfig):
     }
     api_service = "requests"
 
-    components = [DashboardRequestsSearchComponent]
+    components = [DashboardRequestsSearchComponent, AllowedHtmlTagsComponent]
 
     def search_endpoint_url(self, identity, api_config, overrides={}, **kwargs):
         return "/api/requests"

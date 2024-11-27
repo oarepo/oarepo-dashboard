@@ -5,6 +5,7 @@ from oarepo_ui.resources.resource import RecordsUIResource
 from flask_menu import current_menu
 from flask_login import login_required
 from oarepo_runtime.i18n import lazy_gettext as _
+from oarepo_ui.resources.components import AllowedHtmlTagsComponent
 
 
 class DashboardCommunitiesUIResourceConfig(RecordsUIResourceConfig):
@@ -14,8 +15,8 @@ class DashboardCommunitiesUIResourceConfig(RecordsUIResourceConfig):
     application_id = "communities_dashboard"
     templates = {
         "search": "DashboardCommunitiesPage",
-    }   
-
+    }
+    components = [AllowedHtmlTagsComponent]
     routes = {
         "search": "/",
     }
@@ -26,7 +27,6 @@ class DashboardCommunitiesUIResourceConfig(RecordsUIResourceConfig):
 
 
 class DashboardCommunitiesUIResource(RecordsUIResource):
-
     decorators = [
         login_required,
     ]
