@@ -14,3 +14,7 @@ export const PublishRecordIcon = () => (
 export const RecordNewVersionIcon = () => (
   <Icon name="plus" className="neutral" />
 );
+
+export const AssignDoiIcon = () => (
+  <Icon name="drivers license" className="neutral" />
+);
