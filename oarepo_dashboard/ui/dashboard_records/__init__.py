@@ -5,7 +5,6 @@ from oarepo_global_search.ui.config import (
     GlobalSearchUIResourceConfig,
     GlobalSearchUIResource,
 )
-from oarepo_ui.resources import PermissionsComponent
 from oarepo_dashboard.ui.dashboard_components.search import (
     DashboardRecordsSearchComponent,
 )
@@ -28,7 +27,6 @@ class DashboardRecordsUIResourceConfig(GlobalSearchUIResourceConfig):
 
     components = [
         DashboardRecordsSearchComponent,
-        PermissionsComponent,
         AllowedHtmlTagsComponent,
     ]
 
