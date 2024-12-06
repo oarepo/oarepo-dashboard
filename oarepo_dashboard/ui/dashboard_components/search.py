@@ -1,5 +1,6 @@
 from oarepo_ui.resources.components import UIResourceComponent
-from flask import current_app, session
+from flask import current_app
+from oarepo_ui.utils import can_view_deposit_page
 
 
 class DashboardRecordsSearchComponent(UIResourceComponent):
@@ -8,7 +9,7 @@ class DashboardRecordsSearchComponent(UIResourceComponent):
             current_app.config.get("DASHBOARD_RECORD_CREATE_URL", "")
         )
         search_options["overrides"]["permissions"] = {
-            "can_create": session["view_deposit_page_permission"]
+            "can_create": can_view_deposit_page()
         }
 
 
