@@ -136,3 +136,9 @@ msgstr "Nástěnka"
 
 msgid "Create new version of record"
 msgstr "Vytvořit novou verzi záznamu"
+
+msgid "All requests"
+msgstr "Všechny"
+
+msgid "Assign DOI"
+msgstr ""
