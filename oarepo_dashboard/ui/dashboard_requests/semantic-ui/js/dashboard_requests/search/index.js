@@ -56,6 +56,7 @@ export const FacetButtons = () => (
       <FacetsButtonGroupNameToggler
         basic
         toggledFilters={[
+          { text: i18next.t("All requests"), filterName: "all" },
           { text: i18next.t("My"), filterName: "mine" },
           { text: i18next.t("Others"), filterName: "assigned" },
         ]}
