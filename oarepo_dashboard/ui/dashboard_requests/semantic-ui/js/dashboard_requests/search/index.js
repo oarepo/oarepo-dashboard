@@ -75,6 +75,7 @@ export const FacetButtons = () => (
       <FacetsButtonGroupNameToggler
         basic
         toggledFilters={[
+          { text: i18next.t("All requests"), filterName: "all" },
           { text: i18next.t("My"), filterName: "mine" },
           { text: i18next.t("Others"), filterName: "assigned" },
         ]}
@@ -91,10 +92,10 @@ const SearchAppResultViewWithSearchbarWAppName = parametrize(
 );
 
 const ActiveFiltersElementWIgnoredFilters = parametrize(ActiveFiltersElement, {
-  ignoredFilters: ["mine", "assigned", "is_closed"],
+  ignoredFilters: ["mine", "assigned", "all", "is_closed"],
 });
 const ClearFiltersButtonWIgnoredFilters = parametrize(ClearFiltersButton, {
-  ignoredFilters: ["mine", "assigned", "is_closed"],
+  ignoredFilters: ["mine", "assigned", "all", "is_closed"],
 });
 export const DashboardUploadsSearchLayout = SearchAppLayoutWithSearchbarHOC({
   placeholder: i18next.t("Search in my requests..."),

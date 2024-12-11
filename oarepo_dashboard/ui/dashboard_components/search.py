@@ -1,5 +1,5 @@
-from oarepo_ui.resources.components import UIResourceComponent
 from flask import current_app
+from oarepo_ui.resources.components import UIResourceComponent
 from oarepo_ui.utils import can_view_deposit_page
 
 
@@ -15,4 +15,4 @@ class DashboardRecordsSearchComponent(UIResourceComponent):
 
 class DashboardRequestsSearchComponent(UIResourceComponent):
     def before_ui_search(self, *, search_options, view_args, **kwargs):
-        search_options["initial_filters"] = [["is_open", "true"], ["mine", "true"]]
+        search_options["initial_filters"] = [["is_open", "true"], ["all", "true"]]
