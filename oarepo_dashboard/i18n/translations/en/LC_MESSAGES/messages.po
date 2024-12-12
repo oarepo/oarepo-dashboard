@@ -145,3 +145,9 @@ msgstr "Dashboard"
 
 msgid "Create new version of record"
 msgstr ""
+
+msgid "All requests"
+msgstr "All"
+
+msgid "Assign DOI"
+msgstr ""
