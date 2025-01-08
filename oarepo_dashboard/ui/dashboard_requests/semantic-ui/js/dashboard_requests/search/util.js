@@ -35,12 +35,12 @@ export const getReceiver = (request) => {
               href={receiver.links.self_html}
               target="_blank"
               rel="noopener noreferrer"
-              key={index}
+              key={label}
             >
               {label}
             </a>
           ) : (
-            <span>{label}</span>
+            <span key={label}>{label}</span>
           );
         })}
       </span>

@@ -7,7 +7,7 @@
 import { i18next } from "@translations/oarepo_dashboard";
 import { default as RequestTypeIcon } from "@js/invenio_requests/components/RequestTypeIcon";
 import React from "react";
-import RequestTypeLabel from "@js/invenio_requests/request/RequestTypeLabel";
+import { RequestTypeLabel } from "./labels/TypeLabels";
 import RequestStatusLabel from "@js/invenio_requests/request/RequestStatusLabel";
 import { Icon, Item } from "semantic-ui-react";
 import PropTypes from "prop-types";
@@ -40,7 +40,9 @@ export const ComputerTabletRequestsListItem = ({
       </div>
       <Item.Content>
         <Item.Extra>
-          {result.type && <RequestTypeLabel type={result.type} />}
+          {result.type && (
+            <RequestTypeLabel requestName={result.name || result.type} />
+          )}
           {result.status && <RequestStatusLabel status={result.status_code} />}
         </Item.Extra>
         {result?.topic?.status === "removed" ? (

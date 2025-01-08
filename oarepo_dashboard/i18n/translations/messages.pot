@@ -1,35 +1,35 @@
 # Translations template for PROJECT.
-# Copyright (C) 2024 ORGANIZATION
+# Copyright (C) 2025 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-11 20:03+0100\n"
+"POT-Creation-Date: 2025-01-08 11:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.15.0\n"
+"Generated-By: Babel 2.10.3\n"
 
-#: /Users/m/w/cesnet/oarepo-dashboard/oarepo_dashboard/ui/dashboard_communities/__init__.py:46
+#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/dashboard_communities/__init__.py:46
 msgid "Communities"
 msgstr ""
 
-#: /Users/m/w/cesnet/oarepo-dashboard/oarepo_dashboard/ui/dashboard_records/__init__.py:54
+#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/dashboard_records/__init__.py:54
 msgid "Records"
 msgstr ""
 
-#: /Users/m/w/cesnet/oarepo-dashboard/oarepo_dashboard/ui/dashboard_records/__init__.py:63
+#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/dashboard_records/__init__.py:63
 msgid "User Dashboard"
 msgstr ""
 
-#: /Users/m/w/cesnet/oarepo-dashboard/oarepo_dashboard/ui/dashboard_requests/__init__.py:51
+#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/dashboard_requests/__init__.py:51
 msgid "Requests"
 msgstr ""
 
@@ -54,9 +54,6 @@ msgstr ""
 msgid "Opened by {{creatorName}} on {{created}}."
 msgstr ""
 
-msgid "Recepient: {{receiver}}."
-msgstr ""
-
 msgid "Expires at: {{- expiringDate}}"
 msgstr ""
 
@@ -78,17 +75,11 @@ msgstr ""
 msgid "Search in my requests..."
 msgstr ""
 
-msgid "Edit record"
+msgid "Not submitted"
 msgstr ""
 
-msgid "Delete record"
+msgid "Recepient: {{receiver}}."
 msgstr ""
 
-msgid "Publish record"
-msgstr ""
-
-msgid "Create new version of record"
-msgstr ""
-
-msgid "Assign DOI"
+msgid "Recepient:"
 msgstr ""
