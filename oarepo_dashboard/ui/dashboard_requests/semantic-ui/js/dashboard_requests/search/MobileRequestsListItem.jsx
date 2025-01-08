@@ -12,6 +12,7 @@ import { default as RequestTypeIcon } from "@js/invenio_requests/components/Requ
 import { Icon, Item } from "semantic-ui-react";
 import PropTypes from "prop-types";
 import { DateTime } from "luxon";
+import { getReceiver } from "./util";
 
 export const MobileRequestsListItem = ({
   result,
@@ -33,9 +34,7 @@ export const MobileRequestsListItem = ({
       <Item.Content className="centered">
         <Item.Extra>
           {result.type && <RequestTypeLabel type={result.type} />}
-          {result.status && result.is_closed && (
-            <RequestStatusLabel status={result.status_code} />
-          )}
+          {result.status && <RequestStatusLabel status={result.status_code} />}
         </Item.Extra>
         {result?.topic?.status === "removed" ? (
           <Item.Header className="truncate-lines-2 rel-mt-1">
@@ -60,11 +59,7 @@ export const MobileRequestsListItem = ({
               created: result.created,
               interpolation: { escapeValue: false },
             })}{" "}
-            {result.receiver &&
-              i18next.t("Recepient: {{receiver}}.", {
-                receiver: result.receiver.label,
-                interpolation: { escapeValue: false },
-              })}
+            {result.receiver && getReceiver(result)}
           </small>
           <small className="block rel-mt-1">
             {result.receiver?.community &&

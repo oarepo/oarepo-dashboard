@@ -4,6 +4,7 @@ import {
   LabelTypePublishRecord,
   LabelTypeRecordNewVersion,
   LabelTypeAssignDoi,
+  LabelStatusCreate,
 } from "./labels/TypeLabels";
 import {
   PublishRecordIcon,
@@ -27,4 +28,5 @@ export const requestTypeSpecificComponents = {
   PublishRecordIcon,
   [`InvenioRequests.RequestTypeIcon.layout.new_version`]: RecordNewVersionIcon,
   [`InvenioRequests.RequestTypeIcon.layout.assign_doi`]: AssignDoiIcon,
+  [`RequestStatusLabel.layout.created`]: LabelStatusCreate,
 };

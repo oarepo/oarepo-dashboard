@@ -1,5 +1,5 @@
 import React from "react";
-import { Label } from "semantic-ui-react";
+import { Label, Icon } from "semantic-ui-react";
 import { i18next } from "@translations/oarepo_dashboard";
 
 export const LabelTypeEditRecord = (props) => (
@@ -31,3 +31,12 @@ export const LabelTypeAssignDoi = (props) => (
     {i18next.t("Assign DOI")}
   </Label>
 );
+
+export const LabelStatusCreate = (props) => {
+  return (
+    <Label horizontal className="primary" size="small">
+      <Icon name="times rectangle" />
+      {i18next.t("Not submitted")}
+    </Label>
+  );
+};
