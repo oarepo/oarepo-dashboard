@@ -151,3 +151,9 @@ msgstr "All"
 
 msgid "Assign DOI"
 msgstr ""
+
+msgid "Not submitted"
+msgstr ""
+
+msgid "Recepient:"
+msgstr ""

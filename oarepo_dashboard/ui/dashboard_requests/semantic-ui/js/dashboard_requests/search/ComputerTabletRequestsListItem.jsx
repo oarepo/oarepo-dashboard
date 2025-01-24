@@ -7,11 +7,12 @@
 import { i18next } from "@translations/oarepo_dashboard";
 import { default as RequestTypeIcon } from "@js/invenio_requests/components/RequestTypeIcon";
 import React from "react";
-import RequestTypeLabel from "@js/invenio_requests/request/RequestTypeLabel";
+import { RequestTypeLabel } from "./labels/TypeLabels";
 import RequestStatusLabel from "@js/invenio_requests/request/RequestStatusLabel";
 import { Icon, Item } from "semantic-ui-react";
 import PropTypes from "prop-types";
 import { DateTime } from "luxon";
+import { getReceiver } from "./util";
 
 export const ComputerTabletRequestsListItem = ({
   result,
@@ -39,10 +40,10 @@ export const ComputerTabletRequestsListItem = ({
       </div>
       <Item.Content>
         <Item.Extra>
-          {result.type && <RequestTypeLabel type={result.type} />}
-          {result.status && result.is_closed && (
-            <RequestStatusLabel status={result.status_code} />
+          {result.type && (
+            <RequestTypeLabel requestName={result.name || result.type} />
           )}
+          {result.status && <RequestStatusLabel status={result.status_code} />}
         </Item.Extra>
         {result?.topic?.status === "removed" ? (
           <Item.Header className="mt-5">
@@ -65,11 +66,7 @@ export const ComputerTabletRequestsListItem = ({
               created: result.created,
               interpolation: { escapeValue: false },
             })}{" "}
-            {result.receiver &&
-              i18next.t("Recepient: {{receiver}}.", {
-                receiver: result.receiver.label,
-                interpolation: { escapeValue: false },
-              })}
+            {result.receiver && getReceiver(result)}
           </small>
           <small className="right floated">
             {result.receiver?.community &&
