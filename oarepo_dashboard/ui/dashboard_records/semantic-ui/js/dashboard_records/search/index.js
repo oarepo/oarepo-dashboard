@@ -33,7 +33,8 @@ const CreateNewDraftButton = ({ dashboardRecordsCreateUrl }) => {
       "DASHBOARD_RECORD_CREATE_URL was not provided in invenio.cfg"
     );
   return (
-    can_create && (
+    can_create &&
+    dashboardRecordsCreateUrl && (
       <Grid.Column textAlign="right">
         <Button
           as="a"
