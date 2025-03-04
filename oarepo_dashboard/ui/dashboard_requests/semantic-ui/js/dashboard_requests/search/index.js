@@ -9,7 +9,8 @@ import {
   ClearFiltersButton,
   SearchAppLayoutWithSearchbarHOC,
   SearchAppResultViewWithSearchbar,
-} from "@js/oarepo_ui";
+  DynamicResultsListItem,
+} from "@js/oarepo_ui/search";
 import { withState } from "react-searchkit";
 import { RequestsEmptyResultsWithState } from "@js/invenio_requests/search";
 import { defaultContribComponents } from "@js/invenio_requests/contrib";
@@ -102,11 +103,15 @@ export const DashboardUploadsSearchLayout = SearchAppLayoutWithSearchbarHOC({
   extraContent: FacetButtons,
   appName: overridableIdPrefix,
 });
+
+const DynamicRequestListItem = parametrize(DynamicResultsListItem, {
+  FallbackComponent: RequestsResultsItemTemplateDashboard,
+  selector: "type",
+});
 export const componentOverrides = {
   [`${overridableIdPrefix}.EmptyResults.element`]:
     RequestsEmptyResultsWithState,
-  [`${overridableIdPrefix}.ResultsList.item`]:
-    RequestsResultsItemTemplateDashboard,
+  [`${overridableIdPrefix}.ResultsList.item`]: DynamicRequestListItem,
   [`${overridableIdPrefix}.ActiveFilters.element`]:
     ActiveFiltersElementWIgnoredFilters,
   [`${overridableIdPrefix}.ClearFiltersButton.container`]: () => null,
