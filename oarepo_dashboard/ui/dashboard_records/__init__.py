@@ -30,6 +30,12 @@ class DashboardRecordsUIResourceConfig(GlobalSearchUIResourceConfig):
         AllowedHtmlTagsComponent,
     ]
 
+    def search_available_sort_options(self, api_config, identity):
+        return api_config.search_drafts.sort_options
+
+    def search_active_sort_options(self, api_config, identity):
+        return list(api_config.search_drafts.sort_options.keys())
+
     def search_endpoint_url(self, identity, api_config, overrides={}, **kwargs):
         return "/api/user/search"
 
