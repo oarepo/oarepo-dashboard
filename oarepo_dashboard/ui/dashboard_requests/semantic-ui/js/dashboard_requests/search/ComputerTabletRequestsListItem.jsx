@@ -48,11 +48,17 @@ export const ComputerTabletRequestsListItem = ({
         {result?.topic?.status === "removed" ? (
           <Item.Header className="mt-5">
             {result?.title || result?.name}
+            {result?.topic?.label && (
+              <span className="ml-5">({result?.topic?.label})</span>
+            )}
           </Item.Header>
         ) : (
           <Item.Header className="truncate-lines-2  mt-10">
             <a className="header-link" href={detailsURL}>
               {result?.title || result?.name}
+              {result?.topic?.label && (
+                <span className="ml-5">({result?.topic?.label})</span>
+              )}
             </a>
           </Item.Header>
         )}

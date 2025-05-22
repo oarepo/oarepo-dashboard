@@ -42,12 +42,18 @@ export const MobileRequestsListItem = ({
           <Item.Header className="truncate-lines-2 rel-mt-1">
             <RequestTypeIcon type={result.type} />
             {result?.name || result?.title}
+            {result?.topic?.label && (
+              <span className="ml-5">({result?.topic?.label})</span>
+            )}
           </Item.Header>
         ) : (
           <Item.Header className="truncate-lines-2 rel-mt-1">
             <a className="header-link p-0" href={detailsURL}>
               <RequestTypeIcon type={result.type} />
               {result?.name || result?.title}
+              {result?.topic?.label && (
+                <span className="ml-5">({result?.topic?.label})</span>
+              )}
             </a>
           </Item.Header>
         )}
