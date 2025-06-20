@@ -17,9 +17,9 @@ import { defaultContribComponents } from "@js/invenio_requests/contrib";
 import { PropTypes } from "prop-types";
 import { FacetsButtonGroupNameToggler } from "@js/dashboard_components";
 import { i18next } from "@translations/oarepo_dashboard";
-import { ComputerTabletRequestsListItem } from "./ComputerTabletRequestsListItem";
-import { MobileRequestsListItem } from "./MobileRequestsListItem";
-import { requestTypeSpecificComponents } from "./RequestTypeSpecificComponents";
+import { ComputerTabletRequestsListItem } from "@js/oarepo_requests_common/search/ComputerTabletRequestsListItem";
+import { MobileRequestsListItem } from "@js/oarepo_requests_common/search/MobileRequestsListItem";
+import { requestTypeSpecificComponents } from "@js/oarepo_requests_common/search/RequestTypeSpecificComponents";
 
 const [{ overridableIdPrefix }] = parseSearchAppConfigs();
 

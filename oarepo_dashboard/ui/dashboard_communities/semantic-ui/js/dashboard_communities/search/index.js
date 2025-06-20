@@ -9,8 +9,8 @@ import {
 } from "@js/oarepo_ui";
 import { CommunitiesEmptySearchResults } from "@js/invenio_communities/community";
 import PropTypes from "prop-types";
-import { ComputerTabledCommunitiesListItem } from "./ComputerTabletCommunitiesListItem";
-import { MobileCommunitiesListItem } from "./MobileCommunitiesListItem";
+import { ComputerTabledCommunitiesListItem } from "@js/oarepo_communities/search/ComputerTabletCommunitiesListItem";
+import { MobileCommunitiesListItem } from "@js/oarepo_communities/search/MobileCommunitiesListItem";
 import { i18next } from "@translations/oarepo_dashboard";
 
 const [{ overridableIdPrefix }] = parseSearchAppConfigs();
