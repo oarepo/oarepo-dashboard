@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-01-08 11:33+0100\n"
+"POT-Creation-Date: 2025-06-24 09:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,11 +21,11 @@ msgstr ""
 msgid "Communities"
 msgstr ""
 
-#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/dashboard_records/__init__.py:54
+#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/dashboard_records/__init__.py:60
 msgid "Records"
 msgstr ""
 
-#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/dashboard_records/__init__.py:63
+#: /home/dusanst/Projects/oarepo-dashboard/oarepo_dashboard/ui/dashboard_records/__init__.py:69
 msgid "User Dashboard"
 msgstr ""
 
@@ -33,13 +33,7 @@ msgstr ""
 msgid "Requests"
 msgstr ""
 
-msgid "profile"
-msgstr ""
-
 msgid "Search in my communities..."
-msgstr ""
-
-msgid "Restricted"
 msgstr ""
 
 msgid "Create new draft"
@@ -48,22 +42,13 @@ msgstr ""
 msgid "Search in my uploads..."
 msgstr ""
 
-msgid "No description"
-msgstr ""
-
-msgid "Opened by {{creatorName}} on {{created}}."
-msgstr ""
-
-msgid "Expires at: {{- expiringDate}}"
+msgid "All"
 msgstr ""
 
 msgid "Open"
 msgstr ""
 
 msgid "Closed"
-msgstr ""
-
-msgid "All requests"
 msgstr ""
 
 msgid "My"
@@ -73,13 +58,4 @@ msgid "Others"
 msgstr ""
 
 msgid "Search in my requests..."
-msgstr ""
-
-msgid "Not submitted"
-msgstr ""
-
-msgid "Recepient: {{receiver}}."
-msgstr ""
-
-msgid "Recepient:"
 msgstr ""

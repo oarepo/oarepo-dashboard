@@ -5,8 +5,6 @@ import {
   createSearchAppsInit,
   parseSearchAppConfigs,
   SearchappSearchbarElement,
-  ActiveFiltersElement,
-  ClearFiltersButton,
   SearchAppLayoutWithSearchbarHOC,
   SearchAppResultViewWithSearchbar,
   DynamicResultsListItem,
@@ -17,9 +15,9 @@ import { defaultContribComponents } from "@js/invenio_requests/contrib";
 import { PropTypes } from "prop-types";
 import { FacetsButtonGroupNameToggler } from "@js/dashboard_components";
 import { i18next } from "@translations/oarepo_dashboard";
-import { ComputerTabletRequestsListItem } from "./ComputerTabletRequestsListItem";
-import { MobileRequestsListItem } from "./MobileRequestsListItem";
-import { requestTypeSpecificComponents } from "./RequestTypeSpecificComponents";
+import { ComputerTabletRequestsListItem } from "@js/oarepo_requests_common/search/ComputerTabletRequestsListItem";
+import { MobileRequestsListItem } from "@js/oarepo_requests_common/search/MobileRequestsListItem";
+import { requestTypeSpecificComponents } from "@js/oarepo_requests_common/search/RequestTypeSpecificComponents";
 
 const [{ overridableIdPrefix }] = parseSearchAppConfigs();
 
@@ -49,6 +47,7 @@ export const FacetButtons = () => (
       <FacetsButtonGroupNameToggler
         basic
         toggledFilters={[
+          { text: i18next.t("All"), filterName: "is_all" },
           { text: i18next.t("Open"), filterName: "is_open" },
           { text: i18next.t("Closed"), filterName: "is_closed" },
         ]}
@@ -57,7 +56,7 @@ export const FacetButtons = () => (
       <FacetsButtonGroupNameToggler
         basic
         toggledFilters={[
-          { text: i18next.t("All requests"), filterName: "all" },
+          { text: i18next.t("All"), filterName: "all" },
           { text: i18next.t("My"), filterName: "mine" },
           { text: i18next.t("Others"), filterName: "assigned" },
         ]}
@@ -67,6 +66,7 @@ export const FacetButtons = () => (
       <FacetsButtonGroupNameToggler
         basic
         toggledFilters={[
+          { text: i18next.t("All"), filterName: "is_all" },
           { text: i18next.t("Open"), filterName: "is_open" },
           { text: i18next.t("Closed"), filterName: "is_closed" },
         ]}
@@ -76,7 +76,7 @@ export const FacetButtons = () => (
       <FacetsButtonGroupNameToggler
         basic
         toggledFilters={[
-          { text: i18next.t("All requests"), filterName: "all" },
+          { text: i18next.t("All"), filterName: "all" },
           { text: i18next.t("My"), filterName: "mine" },
           { text: i18next.t("Others"), filterName: "assigned" },
         ]}
@@ -92,12 +92,6 @@ const SearchAppResultViewWithSearchbarWAppName = parametrize(
   }
 );
 
-const ActiveFiltersElementWIgnoredFilters = parametrize(ActiveFiltersElement, {
-  ignoredFilters: ["mine", "assigned", "all", "is_closed"],
-});
-const ClearFiltersButtonWIgnoredFilters = parametrize(ClearFiltersButton, {
-  ignoredFilters: ["mine", "assigned", "all", "is_closed"],
-});
 export const DashboardUploadsSearchLayout = SearchAppLayoutWithSearchbarHOC({
   placeholder: i18next.t("Search in my requests..."),
   extraContent: FacetButtons,
@@ -112,15 +106,11 @@ export const componentOverrides = {
   [`${overridableIdPrefix}.EmptyResults.element`]:
     RequestsEmptyResultsWithState,
   [`${overridableIdPrefix}.ResultsList.item`]: DynamicRequestListItem,
-  [`${overridableIdPrefix}.ActiveFilters.element`]:
-    ActiveFiltersElementWIgnoredFilters,
   [`${overridableIdPrefix}.ClearFiltersButton.container`]: () => null,
   [`${overridableIdPrefix}.SearchApp.results`]:
     SearchAppResultViewWithSearchbarWAppName,
   [`${overridableIdPrefix}.SearchBar.element`]: SearchappSearchbarElement,
   [`${overridableIdPrefix}.SearchApp.layout`]: DashboardUploadsSearchLayout,
-  [`${overridableIdPrefix}.ClearFiltersButton.container`]:
-    ClearFiltersButtonWIgnoredFilters,
 
   // from invenio requests in case we have some overlapping request types
   ...defaultContribComponents,
