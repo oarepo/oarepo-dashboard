@@ -30,6 +30,20 @@ class DashboardRequestsUIResourceConfig(RecordsUIResourceConfig):
     def search_endpoint_url(self, identity, api_config, overrides={}, **kwargs):
         return "/api/requests"
 
+    def ignored_search_filters(self):
+        """
+        Return a list of search filters to ignore.
+        """
+        return [
+            *super().ignored_search_filters(),
+            "is_all",
+            "is_open",
+            "is_closed",
+            "all",
+            "mine",
+            "assigned",
+        ]
+
 
 class DashboardRequestsUIResource(RecordsUIResource):
     decorators = [
