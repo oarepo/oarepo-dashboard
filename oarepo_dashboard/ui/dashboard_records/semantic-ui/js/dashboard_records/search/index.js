@@ -5,7 +5,6 @@ import { i18next } from "@translations/oarepo_dashboard";
 import {
   createSearchAppsInit,
   parseSearchAppConfigs,
-  SearchappSearchbarElement,
   DynamicResultsListItem,
   SearchAppLayoutWithSearchbarHOC,
   SearchAppResultViewWithSearchbar,
@@ -63,7 +62,6 @@ export const DashboardUploadsSearchLayout = SearchAppLayoutWithSearchbarHOC({
 });
 export const componentOverrides = {
   [`${overridableIdPrefix}.ResultsList.item`]: DynamicResultsListItem,
-  [`${overridableIdPrefix}.SearchBar.element`]: SearchappSearchbarElement,
   // [`${overridableIdPrefix}.SearchApp.facets`]: ContribSearchAppFacetsWithConfig,
   [`${overridableIdPrefix}.SearchApp.results`]:
     SearchAppResultViewWithSearchbarWAppName,
