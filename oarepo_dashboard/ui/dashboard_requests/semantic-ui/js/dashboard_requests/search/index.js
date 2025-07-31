@@ -4,7 +4,6 @@ import { parametrize } from "react-overridable";
 import {
   createSearchAppsInit,
   parseSearchAppConfigs,
-  SearchappSearchbarElement,
   SearchAppLayoutWithSearchbarHOC,
   SearchAppResultViewWithSearchbar,
   DynamicResultsListItem,
@@ -109,7 +108,6 @@ export const componentOverrides = {
   [`${overridableIdPrefix}.ClearFiltersButton.container`]: () => null,
   [`${overridableIdPrefix}.SearchApp.results`]:
     SearchAppResultViewWithSearchbarWAppName,
-  [`${overridableIdPrefix}.SearchBar.element`]: SearchappSearchbarElement,
   [`${overridableIdPrefix}.SearchApp.layout`]: DashboardUploadsSearchLayout,
 
   // from invenio requests in case we have some overlapping request types

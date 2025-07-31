@@ -3,7 +3,6 @@ import { parametrize } from "react-overridable";
 import {
   createSearchAppsInit,
   parseSearchAppConfigs,
-  SearchappSearchbarElement,
   SearchAppLayoutWithSearchbarHOC,
   SearchAppResultViewWithSearchbar,
 } from "@js/oarepo_ui";
@@ -61,7 +60,6 @@ export const componentOverrides = {
   [`${overridableIdPrefix}.ResultsList.item`]: UserDashboardCommunitiesListItem,
   [`${overridableIdPrefix}.SearchApp.results`]:
     SearchAppResultViewWithSearchbarWAppName,
-  [`${overridableIdPrefix}.SearchBar.element`]: SearchappSearchbarElement,
   [`${overridableIdPrefix}.SearchApp.layout`]: DashboardUploadsSearchLayout,
 };
 
