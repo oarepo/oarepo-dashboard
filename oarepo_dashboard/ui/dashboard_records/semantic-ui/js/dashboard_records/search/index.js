@@ -14,8 +14,8 @@ import PropTypes from "prop-types";
 const [
   {
     overridableIdPrefix,
-    dashboardRecordsCreateUrl,
-    permissions: { can_create },
+    dashboardRecordsCreateUrl = "",
+    permissions: { can_create: canCreate },
   },
 ] = parseSearchAppConfigs();
 
@@ -32,7 +32,7 @@ const CreateNewDraftButton = ({ dashboardRecordsCreateUrl }) => {
       "DASHBOARD_RECORD_CREATE_URL was not provided in invenio.cfg"
     );
   return (
-    can_create &&
+    canCreate &&
     dashboardRecordsCreateUrl && (
       <Grid.Column textAlign="right">
         <Button
@@ -50,7 +50,7 @@ const CreateNewDraftButton = ({ dashboardRecordsCreateUrl }) => {
 };
 
 CreateNewDraftButton.propTypes = {
-  dashboardRecordsCreateUrl: PropTypes.string,
+  dashboardRecordsCreateUrl: PropTypes.string.isRequired,
 };
 
 export const DashboardUploadsSearchLayout = SearchAppLayoutWithSearchbarHOC({
