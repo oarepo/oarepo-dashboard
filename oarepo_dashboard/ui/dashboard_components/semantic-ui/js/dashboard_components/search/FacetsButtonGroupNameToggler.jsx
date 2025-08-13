@@ -9,7 +9,7 @@ const FacetsButtonGroupNameTogglerComponent = ({
   currentQueryState,
   updateQueryState,
   toggledFilters,
-  keepFiltersOnUpdate,
+  keepFiltersOnUpdate = true,
   ...uiProps
 }) => {
   const { initialQueryState } = useContext(SearchConfigurationContext);
@@ -59,6 +59,7 @@ const FacetsButtonGroupNameTogglerComponent = ({
   );
 };
 
+/* eslint-disable react/require-default-props */
 FacetsButtonGroupNameTogglerComponent.propTypes = {
   currentQueryState: PropTypes.object.isRequired,
   updateQueryState: PropTypes.func.isRequired,
@@ -71,10 +72,8 @@ FacetsButtonGroupNameTogglerComponent.propTypes = {
   ).isRequired,
   keepFiltersOnUpdate: PropTypes.bool,
 };
+/* eslint-enable react/require-default-props */
 
-FacetsButtonGroupNameTogglerComponent.defaultProps = {
-  keepFiltersOnUpdate: true,
-};
 export const FacetsButtonGroupNameToggler = withState(
   FacetsButtonGroupNameTogglerComponent
 );

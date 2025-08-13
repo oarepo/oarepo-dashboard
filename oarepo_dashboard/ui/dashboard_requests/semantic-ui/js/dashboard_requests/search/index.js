@@ -51,7 +51,7 @@ export const FacetButtons = () => (
           { text: i18next.t("Closed"), filterName: "is_closed" },
         ]}
       />
-      <span className="rel-ml-2"></span>
+      <span className="rel-ml-2" />
       <FacetsButtonGroupNameToggler
         basic
         toggledFilters={[

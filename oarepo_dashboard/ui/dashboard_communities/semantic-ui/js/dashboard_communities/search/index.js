@@ -16,7 +16,7 @@ const [{ overridableIdPrefix }] = parseSearchAppConfigs();
 
 export const UserDashboardCommunitiesListItem = ({
   result,
-  communityTypeLabelTransparent,
+  communityTypeLabelTransparent = false,
 }) => {
   const isRestricted = result?.access?.visibility === "restricted";
   return (
@@ -34,15 +34,12 @@ export const UserDashboardCommunitiesListItem = ({
     </React.Fragment>
   );
 };
-
+/* eslint-disable react/require-default-props */
 UserDashboardCommunitiesListItem.propTypes = {
   result: PropTypes.object.isRequired,
   communityTypeLabelTransparent: PropTypes.bool,
 };
-
-UserDashboardCommunitiesListItem.defaultProps = {
-  communityTypeLabelTransparent: false,
-};
+/* eslint-enable react/require-default-props */
 
 const SearchAppResultViewWithSearchbarWAppName = parametrize(
   SearchAppResultViewWithSearchbar,
