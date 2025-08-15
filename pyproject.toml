@@ -1,0 +1,58 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "oarepo-dashboard"
+dynamic = ["version"]
+description = "Support for user dashboard (records, communities, requests)"
+readme = "README.md"
+license = "MIT"
+dependencies = [
+    "oarepo[rdm,tests]>=13,<14",
+    "oarepo-runtime>=2.0.0dev0,<3.0.0",
+    "cachetools",
+    "oarepo-ui>=6.0.0dev0,<7.0.0",
+    "openpyxl",
+]
+
+[project.optional-dependencies]
+dev = [
+    "oarepo-tools",
+]
+tests = [
+    "autoflake",
+    "black",
+    "isort",
+    "pytest-invenio",
+    "pytest>=7.1.2",
+]
+
+[project.entry-points."invenio_assets.webpack"]
+oarepo_dashboard_communities_ui_theme = "oarepo_dashboard.ui.dashboard_communities.webpack:theme"
+oarepo_dashboard_components_ui_theme = "oarepo_dashboard.ui.dashboard_components.webpack:theme"
+oarepo_dashboard_i18n = "oarepo_dashboard.i18n.webpack:theme"
+oarepo_dashboard_records_ui_theme = "oarepo_dashboard.ui.dashboard_records.webpack:theme"
+oarepo_dashboard_requests_ui_theme = "oarepo_dashboard.ui.dashboard_requests.webpack:theme"
+
+[project.entry-points."invenio_base.blueprints"]
+oarepo_dashboard_communities = "oarepo_dashboard.ui.dashboard_communities:create_blueprint"
+oarepo_dashboard_components = "oarepo_dashboard.ui.dashboard_components:create_blueprint"
+oarepo_dashboard_records = "oarepo_dashboard.ui.dashboard_records:create_blueprint"
+oarepo_dashboard_requests = "oarepo_dashboard.ui.dashboard_requests:create_blueprint"
+
+[project.entry-points."invenio_i18n.translations"]
+oarepo_dashboard_messages = "oarepo_dashboard.i18n"
+
+[tool.hatch.version]
+path = "oarepo_dashboard/__init__.py"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/oarepo_dashboard",
+]
+
+[tool.pytest.ini_options]
+testpaths = [
+    "tests",
+]
