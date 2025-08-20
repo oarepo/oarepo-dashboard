@@ -9,9 +9,7 @@ theme = WebpackThemeBundle(
             "entry": {
                 "dashboard_components": "./js/dashboard_components/custom-components.js"
             },
-            "dependencies": {
-                "react-searchkit": "^2.0.0",
-            },
+            "dependencies": {},
             "devDependencies": {},
             "aliases": {"@js/dashboard_components": "./js/dashboard_components/search"},
         }

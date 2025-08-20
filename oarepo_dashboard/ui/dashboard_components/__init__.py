@@ -1,5 +1,4 @@
-from oarepo_ui.resources.config import TemplatePageUIResourceConfig
-from oarepo_ui.resources.resource import TemplatePageUIResource
+from oarepo_ui.resources.template_pages import TemplatePageUIResourceConfig, TemplatePageUIResource
 
 
 class ComponentsResourceConfig(TemplatePageUIResourceConfig):

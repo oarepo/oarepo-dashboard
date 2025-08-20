@@ -1,6 +1,6 @@
 from flask_menu import current_menu
 from flask_login import current_user, login_required
-from oarepo_runtime.i18n import lazy_gettext as _
+from invenio_i18n import lazy_gettext as _
 from oarepo_global_search.ui.config import (
     GlobalSearchUIResourceConfig,
     GlobalSearchUIResource,
@@ -52,7 +52,8 @@ def create_blueprint(app):
         DashboardRecordsUIResourceConfig()
     ).as_blueprint()
 
-    @app_blueprint.before_app_first_request
+    # TODO: replace deprecated decoratoir
+    # @app_blueprint.before_app_first_request
     def init_menu():
         user_dashboard = current_menu.submenu("user_dashboard")
         user_dashboard.submenu("records").register(
