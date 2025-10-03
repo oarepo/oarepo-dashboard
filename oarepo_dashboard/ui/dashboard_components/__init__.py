@@ -10,7 +10,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, cast
 
 from flask_menu import current_menu
 from invenio_i18n import lazy_gettext as _
@@ -24,6 +24,7 @@ from oarepo_ui.resources import TemplatePageUIResource, TemplatePageUIResourceCo
 
 if TYPE_CHECKING:
     from flask import Blueprint, Flask
+    from flask_resources import ResourceConfig
 
 
 class ComponentsResourceConfig(TemplatePageUIResourceConfig):
@@ -115,4 +116,4 @@ def create_blueprint(app: Flask) -> Blueprint:
     app.config.get("OAREPO_UI_RESULT_LIST_ITEM_REGISTRATION_CALLBACKS", []).append(
         _register_dashboard_uploads_result_item
     )
-    return TemplatePageUIResource(ComponentsResourceConfig()).as_blueprint()
+    return TemplatePageUIResource(cast("ResourceConfig", ComponentsResourceConfig())).as_blueprint()
