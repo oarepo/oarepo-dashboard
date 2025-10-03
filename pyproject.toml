@@ -26,6 +26,9 @@ tests = [
     "pytest>=7.1.2",
 ]
 
+oarepo14 = [
+    "oarepo[rdm,tests]>=14.0.0,<15.0.0",
+]
 
 [project.entry-points."invenio_base.blueprints"]
 oarepo_dashboard_components = "oarepo_dashboard.ui.dashboard_components:create_blueprint"
