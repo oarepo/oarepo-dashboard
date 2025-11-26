@@ -12,6 +12,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, cast
 
+from flask_login import current_user
 from flask_menu import current_menu
 from invenio_i18n import lazy_gettext as _
 from oarepo_ui.overrides import (
@@ -37,11 +38,13 @@ class ComponentsResourceConfig(TemplatePageUIResourceConfig):
 
 def init_menu(app: Flask) -> None:
     """Initialize dashboard menu."""
-    current_menu.submenu("actions.deposit").register(
-        endpoint="invenio_app_rdm_users.uploads",
-        text=_("My dashboard"),
-        order=1,
-    )
+    if app.config.get("REGISTER_DASHBOARD_IN_MAIN_MENU", True):
+        current_menu.submenu("actions.deposit").register(
+            endpoint="invenio_app_rdm_users.uploads",
+            text=_("My dashboard"),
+            order=1,
+            visible_when=lambda: current_user.is_authenticated,
+        )
     user_dashboard = current_menu.submenu("dashboard")
     # set dashboard-config to its default
     user_dashboard_menu_config = {
