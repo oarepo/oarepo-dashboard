@@ -23,7 +23,7 @@
       </div>
     </div>
     {% if active_dashboard_menu_item == "uploads" %}
-      <a class="ui tiny button positive left labeled icon m-0" href="{{config.get("DASHBOARD_RECORD_CREATE_URL", "")}}">
+      <a class="ui tiny button positive left labeled icon m-0" href="{{config.get("DASHBOARD_RECORD_CREATE_URL", url_for('oarepo_ui.uploads_new'))}}">
         <i class="upload icon" aria-hidden="true"></i>
         {{ _('New upload') }}
       </a>
