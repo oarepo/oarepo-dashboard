@@ -32,7 +32,6 @@ oarepo14 = [
 
 [project.entry-points."invenio_base.blueprints"]
 oarepo_dashboard_components = "oarepo_dashboard.ui.dashboard_components:create_blueprint"
-invenio_app_rdm_users = "invenio_app_rdm.users_ui.views:create_ui_blueprint"
 
 [project.entry-points."invenio_assets.webpack"]
 oarepo_dashboard_i18n = "oarepo_dashboard.i18n.webpack:theme"
