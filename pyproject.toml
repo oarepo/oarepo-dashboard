@@ -1,6 +1,6 @@
 [project]
 name = "oarepo-dashboard"
-version = "3.0.0"
+version = "4.0.0"
 description = "Support for user dashboard (records, communities, requests)"
 readme = "README.md"
 requires-python = ">=3.14,<3.15"
@@ -9,9 +9,9 @@ authors = [
 ]
 dependencies = [
     "oarepo[rdm,tests]>=14,<15",
-    "oarepo-runtime>=3.0.0,<4.0.0",
-    "oarepo-ui>=8.0.0,<9.0.0",
-    "oarepo-rdm>=2.0.0,<3.0.0",
+    "oarepo-runtime>=4.0.0,<5.0.0",
+    "oarepo-ui>=9.0.0,<10.0.0",
+    "oarepo-rdm>=3.0.0,<4.0.0",
     "cachetools",
     "openpyxl",
 
