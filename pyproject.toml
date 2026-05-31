@@ -22,7 +22,6 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
-    "oarepo-tools",
     "pytest>=7.1.2",
 ]
 
