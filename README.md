@@ -10,6 +10,7 @@ This package provides the `/me` dashboard area where a user manages their own co
 - Customized dashboard header with avatar, user info, and context-aware actions
 - Result-list rendering overrides for the user's uploads, driven by `oarepo-ui`
 - A pluggable hook for registering per-schema result-item components
+- Support for multiple record models in the `/me/uploads` section
 - React search components and dashboard styling shipped as a Webpack bundle
 - Czech and English translations
 
@@ -21,13 +22,15 @@ The package registers itself with Invenio through entry points — no manual app
 pip install oarepo-dashboard
 ```
 
-### Requirements
+## Configuration
 
-- Python 3.14
-- oarepo[rdm] 14.x
-- oarepo-runtime >= 7.0.0
-- oarepo-ui >= 13.0.0
-- oarepo-rdm >= 8.0.0
+The following application config keys affect the dashboard:
+
+| Key | Default | Description |
+| --- | --- | --- |
+| `REGISTER_DASHBOARD_IN_MAIN_MENU` | `True` | Whether to add the *My dashboard* entry to the main deposit menu. |
+| `USER_DASHBOARD_MENU_OVERRIDES` | `{}` | Per-submenu overrides for the dashboard tabs. Keys must be one of `uploads`, `communities`, `requests`; values are merged into that submenu's registration kwargs (e.g. `text`, `order`, `endpoint`). Overriding an unknown submenu name raises `ValueError`. |
+| `DASHBOARD_RECORD_CREATE_URL` | `""` | Target URL for the *New upload* button on the Uploads tab. |
 
 ## Key Features
 
@@ -88,16 +91,6 @@ Front-end assets are shipped as a `WebpackThemeBundle`. Notably, `FacetsButtonGr
 
 Bundled Czech (`cs`) and English (`en`) message catalogs, registered through the `invenio_i18n.translations` entry point.
 
-## Configuration
-
-The following application config keys affect the dashboard:
-
-| Key | Default | Description |
-| --- | --- | --- |
-| `REGISTER_DASHBOARD_IN_MAIN_MENU` | `True` | Whether to add the *My dashboard* entry to the main deposit menu. |
-| `USER_DASHBOARD_MENU_OVERRIDES` | `{}` | Per-submenu overrides for the dashboard tabs. Keys must be one of `uploads`, `communities`, `requests`; values are merged into that submenu's registration kwargs (e.g. `text`, `order`, `endpoint`). Overriding an unknown submenu name raises `ValueError`. |
-| `DASHBOARD_RECORD_CREATE_URL` | `""` | Target URL for the *New upload* button on the Uploads tab. |
-
 ## Development
 
 ```bash
@@ -109,25 +102,6 @@ cd oarepo-dashboard
 ```
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the full contribution workflow.
-
-## Entry Points
-
-The package registers the following Invenio entry points:
-
-```python
-[project.entry-points."invenio_base.blueprints"]
-oarepo_dashboard_components = "oarepo_dashboard.ui.dashboard_components:create_blueprint"
-
-[project.entry-points."invenio_base.finalize_app"]
-oarepo_dashboard_finalize_app = "oarepo_dashboard.ui.dashboard_components:finalize_app"
-
-[project.entry-points."invenio_assets.webpack"]
-oarepo_dashboard_i18n = "oarepo_dashboard.i18n.webpack:theme"
-oarepo_dashboard_components_ui_theme = "oarepo_dashboard.ui.dashboard_components.webpack:theme"
-
-[project.entry-points."invenio_i18n.translations"]
-oarepo_dashboard_messages = "oarepo_dashboard"
-```
 
 ## License
 
