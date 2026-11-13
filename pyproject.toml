@@ -1,6 +1,6 @@
 [project]
 name = "oarepo-dashboard"
-version = "8.0.0"
+version = "8.0.1"
 description = "Support for user dashboard (records, communities, requests)"
 readme = "README.md"
 requires-python = ">=3.14,<3.15"
